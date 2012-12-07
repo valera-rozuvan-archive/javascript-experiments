@@ -1,6 +1,13 @@
 define(['jquery'], function ($) {
-    return function (moduleName, moduleDescription) {
-        var moduleDiv, captionDiv;
+    var moduleIndex;
+
+    moduleIndex = 0;
+
+    return function (moduleDescription) {
+        var moduleDiv, moduleName, captionDiv;
+
+        moduleIndex += 1;
+        moduleName = 'module' + moduleIndex;
 
         moduleDiv = $('<div>');
         moduleDiv.attr('data-module_name', moduleName);

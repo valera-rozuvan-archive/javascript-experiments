@@ -2,7 +2,7 @@ define(['moduleDiv', 'output'], function (ModuleDiv, Output) {
     var moduleDiv, p;
 
     // Create an output <div> for our module.
-    moduleDiv = ModuleDiv('module1', 'object references');
+    moduleDiv = ModuleDiv('object references');
 
     // Short hand for output functions we will use.
     p = Output.p.curry(moduleDiv);
