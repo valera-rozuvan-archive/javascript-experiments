@@ -11,7 +11,8 @@ requirejs.config({
 
         'Output': 'js-author/output',
         'ModuleDiv': 'js-author/module_div',
-        'RunModules': 'js-author/run_modules'
+        'RunModules': 'js-author/run_modules',
+        'ExperimentsMenu': 'js-author/experiments_menu'
     },
     'shim': {
         'showdown': {
@@ -21,6 +22,6 @@ requirejs.config({
     }
 });
 
-requirejs(['RunModules', 'jquery'], function (RunModules, $) {
-    RunModules('array_splice', 6);
+requirejs(['jquery', 'ExperimentsMenu'], function ($, ExperimentsMenu) {
+    ExperimentsMenu();
 });

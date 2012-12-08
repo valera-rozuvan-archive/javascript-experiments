@@ -17,6 +17,7 @@ define(['jquery'], function ($) {
 
         moduleDivs[moduleName].addCaption = addCaption;
         moduleDivs[moduleName].appendToPage =  appendToPage;
+        moduleDivs[moduleName].appendToSelector =  appendToSelector;
 
         return;
 
@@ -29,8 +30,12 @@ define(['jquery'], function ($) {
             captionDiv.appendTo(moduleDivs[moduleName]);
         }
 
-        function appendToPage(moduleName) {
+        function appendToPage() {
             this.appendTo('.page');
+        }
+
+        function appendToSelector(divSelector) {
+            this.appendTo(divSelector);
         }
     }
 });
