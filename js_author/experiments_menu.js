@@ -1,8 +1,7 @@
 define(['text!toc.json', 'jquery', 'ModuleDiv', 'Output', 'RunModules'], function (Toc, $, ModuleDiv, Output, RunModules) {
     var moduleDiv, p, out;
 
-    moduleDiv = ModuleDiv('Experiments menu', 'This is a list of all available JavaScript experiments.');
-    p = Output.p.curry(moduleDiv);
+    moduleDiv = ModuleDiv('Experiments menu. A list of all available JS experiments.');
     out = Output.out.curry(moduleDiv);
 
     return ExperimentsMenu;
@@ -16,7 +15,7 @@ define(['text!toc.json', 'jquery', 'ModuleDiv', 'Output', 'RunModules'], functio
 
         out('<ul>');
         for (c1 = 0; c1 < toc.length; c1 += 1) {
-            out('<li style="color: blue; cursor: pointer;" data-module_index="' + c1 + '">' + toc[c1].moduleName  + '</li>');
+            out('<li data-module_index="' + c1 + '">' + toc[c1].moduleName  + '</li>');
         }
         out('</ul>');
 
@@ -28,7 +27,9 @@ define(['text!toc.json', 'jquery', 'ModuleDiv', 'Output', 'RunModules'], functio
 
                 $('.page').empty();
 
-                RunModules(toc[moduleIndex].moduleName, parseInt(toc[moduleIndex].modulesToRun, 10));
+                $(document).attr('title', 'JavaScript Experiments: ' + toc[moduleIndex].moduleName);
+
+                RunModules('experiments/' + toc[moduleIndex].moduleFolder, toc[moduleIndex].modulesToRun);
             });
         });
 

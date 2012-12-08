@@ -1,10 +1,17 @@
 [
     {
-        "moduleName": "array_splice",
-        "modulesToRun": "5"
+        "moduleName": "Array.splice()",
+        "moduleFolder": "array_splice",
+        "modulesToRun": 5
     },
     {
-        "moduleName": "js_markdown",
+        "moduleName": "JS Markdown",
+        "moduleFolder": "js_markdown",
+        "modulesToRun": "1"
+    },
+    {
+        "moduleName": "Dynamic functions with eval()",
+        "moduleFolder": "eval_dynamic_func",
         "modulesToRun": "1"
     }
 ]

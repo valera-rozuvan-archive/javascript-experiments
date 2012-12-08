@@ -2,7 +2,7 @@ define(['ModuleDiv', 'Output'], function (ModuleDiv, Output) {
     var moduleDiv, p;
 
     // Create an output <div> for our module.
-    moduleDiv = ModuleDiv('module3', 'Array.splice (cont.)');
+    moduleDiv = ModuleDiv('Array.slice() method. Part 3.');
 
     // Short hand for output functions we will use.
     p = Output.p.curry(moduleDiv);
@@ -25,17 +25,12 @@ define(['ModuleDiv', 'Output'], function (ModuleDiv, Output) {
         p('myArray = ' + JSON.stringify(myArray) + '.');
         p('copyOfMyArray = ' + JSON.stringify(copyOfMyArray) + '.');
 
-        p('Now we will modify the second object. We will set "x" property of the object to 201');
-        obj2.x = 201;
+        p('What if we use the delete operator on the \'x\' property of the second object?');
+        delete obj2.x;
 
         p('myArray = ' + JSON.stringify(myArray) + '.');
         p('copyOfMyArray = ' + JSON.stringify(copyOfMyArray) + '.');
-
-        p('What if we use the delete operator on the second element?');
-        delete myArray[1];
-
-        p('myArray = ' + JSON.stringify(myArray) + '.');
-        p('copyOfMyArray = ' + JSON.stringify(copyOfMyArray) + '.');
+        p('typeof obj2.x = ' + (typeof obj2.x) + '.');
 
         moduleDiv.appendToPage();
     };

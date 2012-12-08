@@ -5,14 +5,14 @@
 requirejs.config({
     'baseUrl': '',
     'paths': {
-        'jquery': 'js-vendor/jquery-1.8.3.min',
-        'text': 'js-vendor/text',
-        'showdown': 'js-vendor/showdown.min',
+        'jquery': 'js_vendor/jquery-1.8.3.min',
+        'text': 'js_vendor/text',
+        'showdown': 'js_vendor/showdown.min',
 
-        'Output': 'js-author/output',
-        'ModuleDiv': 'js-author/module_div',
-        'RunModules': 'js-author/run_modules',
-        'ExperimentsMenu': 'js-author/experiments_menu'
+        'Output': 'js_author/output',
+        'ModuleDiv': 'js_author/module_div',
+        'RunModules': 'js_author/run_modules',
+        'ExperimentsMenu': 'js_author/experiments_menu'
     },
     'shim': {
         'showdown': {

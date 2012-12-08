@@ -1,8 +1,8 @@
-define(['ModuleDiv', 'Output'], function (ModuleDiv, Output) {
+define(['ModuleDiv', 'Output', 'jquery'], function (ModuleDiv, Output, $) {
     var moduleDiv, p;
 
     // Create an output <div> for our module.
-    moduleDiv = ModuleDiv('module1', 'object references');
+    moduleDiv = ModuleDiv('Object references');
 
     // Short hand for output functions we will use.
     p = Output.p.curry(moduleDiv);

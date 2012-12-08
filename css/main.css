@@ -1,25 +1,63 @@
+.toc, .page {
+    width: 600px;
+    margin-right: auto;
+    margin-left: auto;
+    font-family: sans-serif;
+    font-size: 14px;
+    line-height: 1.65em;
+}
+
+.toc li {
+    display: inline;
+    float: left;
+    margin: 0px 5px 10px 10px;
+    padding: 5px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
 .module {
-    border: 2px dashed black;
     margin: 20px 0px 20px 0px;
     padding: 5px;
     overflow: hidden;
     word-wrap: break-word;
+
+    background-color: #64A2DF;
+
+    -moz-box-shadow: 3px 3px 4px #000;
+    -webkit-box-shadow: 3px 3px 4px #000;
+    box-shadow: 3px 3px 4px #000;
+    /* For IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+    /* For IE 5.5 - 7 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
 }
 
 .module_caption {
     text-align: center;
-    border-bottom: 2px dashed red;
+    font-size: 18px;
+    border-bottom: 2px dashed #2079D1;
     overflow: hidden;
     word-wrap: break-word;
 }
 
 pre {
     padding: 20px;
+
     background-color: black;
     color: yellow;
+
+    font-family: courier;
+    font-size: 13px;
+    line-height: 1.2em;
 }
 
 p code {
     background-color: black;
     color: yellow;
+
+    font-family: courier;
+    font-size: 13px;
+    line-height: 1.2em;
 }

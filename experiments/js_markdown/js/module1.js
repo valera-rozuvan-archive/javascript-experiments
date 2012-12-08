@@ -2,7 +2,7 @@ define(['ModuleDiv', 'Output', 'showdown', 'text!../index.md'], function (Module
     var moduleDiv, p, out;
 
     // Create an output <div> for our module.
-    moduleDiv = ModuleDiv('JS Markdown module1', 'Some text');
+    moduleDiv = ModuleDiv('Rendering sample markdown content.');
 
     // Short hand for output functions we will use.
     p = Output.p.curry(moduleDiv);
