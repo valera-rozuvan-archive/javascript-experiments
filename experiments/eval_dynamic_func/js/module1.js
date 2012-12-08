@@ -12,15 +12,16 @@ define(['ModuleDiv', 'Output', 'jquery'], function (ModuleDiv, Output, $) {
     return function () {
         var funcString, dynamicFunc;
 
+        funcString = 'return x + getSeven(); function getSeven() { return 7; }';
+
         moduleDiv.empty();
         moduleDiv.addCaption();
 
-        p('We will define a dynamic function by passing the string:');
-        p('function (x) { return x + 7; }');
-        p('to eval() (wrapping the string with \'(\' and \')\'). The result we will assign to a variable, and call the dynamic function via that variable, passing 2 as the argument.');
+        p('We will define a dynamic function by passing \'x\' and the string:');
+        p(funcString);
+        p('to the Function constructor. The result we will assign to a variable, and call the dynamic function via that variable, passing 2 as the argument.');
 
-        funcString = 'function (x) { return x + 7; }';
-        dynamicFunc = eval('(' + funcString + ')');
+        dynamicFunc = new Function('x', funcString);
 
         p('x = 2; f(x) = ' + dynamicFunc(2));
 
