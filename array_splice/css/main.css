@@ -1,0 +1,20 @@
+.module {
+    border: 2px dashed black;
+    margin: 20px 0px 20px 0px;
+    padding: 5px;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+.module_caption {
+    text-align: center;
+    border-bottom: 2px dashed red;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+pre {
+    padding: 20px;
+    background-color: black;
+    color: yellow;
+}

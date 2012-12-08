@@ -1,4 +1,4 @@
-define(['moduleDiv', 'output', 'text!../indexSource.js', 'showdown'], function (ModuleDiv, Output, IndexSource, Showdown) {
+define(['moduleDiv', 'output', 'text!../index.md', 'showdown'], function (ModuleDiv, Output, IndexSource, Showdown) {
     var moduleDiv, p, out;
 
     // Create an output <div> for our module.
