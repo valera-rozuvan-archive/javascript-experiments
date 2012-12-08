@@ -3,6 +3,7 @@ define(['ModuleDiv', 'Output'], function (ModuleDiv, Output) {
 
     // Create an output <div> for our module.
     moduleDiv = ModuleDiv('Array.slice() method. Part 3.');
+    moduleDiv.hide();
 
     // Short hand for output functions we will use.
     p = Output.p.curry(moduleDiv);
@@ -33,5 +34,6 @@ define(['ModuleDiv', 'Output'], function (ModuleDiv, Output) {
         p('typeof obj2.x = ' + (typeof obj2.x) + '.');
 
         moduleDiv.appendToPage();
+        moduleDiv.slideDown(500);
     };
 });

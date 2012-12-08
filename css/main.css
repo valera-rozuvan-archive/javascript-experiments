@@ -1,5 +1,5 @@
 .toc, .page {
-    width: 600px;
+    width: 700px;
     margin-right: auto;
     margin-left: auto;
     font-family: sans-serif;
@@ -44,6 +44,8 @@
 
 pre {
     padding: 20px;
+    margin-left: -5px;
+    margin-right: -5px;
 
     background-color: black;
     color: yellow;

@@ -3,6 +3,7 @@ define(['ModuleDiv', 'Output', 'jquery'], function (ModuleDiv, Output, $) {
 
     // Create an output <div> for our module.
     moduleDiv = ModuleDiv('Simple x + 7');
+    moduleDiv.hide();
 
     // Short hand for output functions we will use.
     p = Output.p.curry(moduleDiv);
@@ -24,5 +25,6 @@ define(['ModuleDiv', 'Output', 'jquery'], function (ModuleDiv, Output, $) {
         p('x = 2; f(x) = ' + dynamicFunc(2));
 
         moduleDiv.appendToPage();
+        moduleDiv.slideDown(500);
     };
 });

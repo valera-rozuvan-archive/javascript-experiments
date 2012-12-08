@@ -3,6 +3,7 @@ define(['ModuleDiv', 'Output', 'showdown', 'text!../index.md'], function (Module
 
     // Create an output <div> for our module.
     moduleDiv = ModuleDiv('Rendering sample markdown content.');
+    moduleDiv.hide();
 
     // Short hand for output functions we will use.
     p = Output.p.curry(moduleDiv);
@@ -22,5 +23,6 @@ define(['ModuleDiv', 'Output', 'showdown', 'text!../index.md'], function (Module
         out(convertedText);
 
         moduleDiv.appendToPage();
+        moduleDiv.slideDown(500);
     };
 });

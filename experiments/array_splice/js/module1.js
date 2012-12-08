@@ -3,6 +3,7 @@ define(['ModuleDiv', 'Output', 'jquery'], function (ModuleDiv, Output, $) {
 
     // Create an output <div> for our module.
     moduleDiv = ModuleDiv('Object references');
+    moduleDiv.hide();
 
     // Short hand for output functions we will use.
     p = Output.p.curry(moduleDiv);
@@ -38,5 +39,6 @@ define(['ModuleDiv', 'Output', 'jquery'], function (ModuleDiv, Output, $) {
         p('copyOfMyObj.property1.x = ' + copyOfMyObj.property1.x + '.');
 
         moduleDiv.appendToPage();
+        moduleDiv.slideDown(500);
     };
 });

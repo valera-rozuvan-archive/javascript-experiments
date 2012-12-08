@@ -3,6 +3,7 @@ define(['ModuleDiv', 'Output'], function (ModuleDiv, Output) {
 
     // Create an output <div> for our module.
     moduleDiv = ModuleDiv('Array.slice() method. Part 4.');
+    moduleDiv.hide();
 
     // Short hand for output functions we will use.
     p = Output.p.curry(moduleDiv);
@@ -39,5 +40,6 @@ define(['ModuleDiv', 'Output'], function (ModuleDiv, Output) {
         p('copyOfMyArray = ' + JSON.stringify(copyOfMyArray) + '.');
 
         moduleDiv.appendToPage();
+        moduleDiv.slideDown(500);
     };
 });
