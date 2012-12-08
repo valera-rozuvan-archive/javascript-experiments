@@ -2,7 +2,7 @@ define(['ModuleDiv', 'Output', 'jquery'], function (ModuleDiv, Output, $) {
     var moduleDiv, p;
 
     // Create an output <div> for our module.
-    moduleDiv = ModuleDiv('Simple x + 2');
+    moduleDiv = ModuleDiv('Simple x + 7');
 
     // Short hand for output functions we will use.
     p = Output.p.curry(moduleDiv);
@@ -16,7 +16,7 @@ define(['ModuleDiv', 'Output', 'jquery'], function (ModuleDiv, Output, $) {
 
         p('We will define a dynamic function by passing the string:');
         p('function (x) { return x + 7; }');
-        p('to eval(). The result we will assign to a variable, and call the dynamic function via that variable, passing 2 as the argument.');
+        p('to eval() (wrapping the string with \'(\' and \')\'). The result we will assign to a variable, and call the dynamic function via that variable, passing 2 as the argument.');
 
         funcString = 'function (x) { return x + 7; }';
         dynamicFunc = eval('(' + funcString + ')');
