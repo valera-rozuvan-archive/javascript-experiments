@@ -5,7 +5,7 @@ define([], function () {
 
     return RunModules;
 
-    function RunModules(modules) {
+    function RunModules(moduleDir, modules) {
         var moduleNames;
 
         // We expect that this function will be called only once.
@@ -28,7 +28,7 @@ define([], function () {
                 for (i = 1; i <= numModules; i++) {
                     // Module names start with 'module1', and continue with
                     // 'module2', 'module3', and so on.
-                    moduleNames.push('module' + i);
+                    moduleNames.push(moduleDir + '/js/' + 'module' + i);
                 }
             }());
         } else if ((typeof modules === 'object') && (modules instanceof Array)) {
@@ -47,7 +47,7 @@ define([], function () {
                 for (i = 0; i < moduleNumsToInclude.length; i++) {
                     // Module names start with 'module1', and continue with
                     // 'module2', 'module3', and so on.
-                    moduleNames.push('module' + moduleNumsToInclude[i]);
+                    moduleNames.push(moduleDir + '/js/' + 'module' + moduleNumsToInclude[i]);
                 }
             }());
         } else {

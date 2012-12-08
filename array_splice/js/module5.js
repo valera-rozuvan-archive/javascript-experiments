@@ -1,4 +1,4 @@
-define(['moduleDiv', 'output'], function (ModuleDiv, Output) {
+define(['ModuleDiv', 'Output'], function (ModuleDiv, Output) {
     var moduleDiv, p;
 
     // Create an output <div> for our module.
