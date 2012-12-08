@@ -1,17 +1,8 @@
 define([], function () {
-    var RunModuleExecuted;
-
-    RunModuleExecuted = false;
-
     return RunModules;
 
     function RunModules(moduleDir, modules) {
         var moduleNames;
-
-        // We expect that this function will be called only once.
-        if (RunModuleExecuted !== false) {
-            return;
-        }
 
         if (typeof modules === 'number') {
             // The parameter 'modules' is of type 'number'.
@@ -63,8 +54,5 @@ define([], function () {
                 arguments[i]();
             }
         });
-
-        // Make sure that this function will not execute twice.
-        RunModuleExecuted = true;
     }
 });

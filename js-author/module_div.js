@@ -1,25 +1,36 @@
 define(['jquery'], function ($) {
-    var moduleIndex;
+    var moduleDiv;
 
-    moduleIndex = 0;
+    moduleDivs = {};
 
-    return function (moduleDescription) {
-        var moduleDiv, moduleName, captionDiv;
+    return function (moduleName, moduleDescription) {
+        if (moduleDivs[moduleName] === undefined) {
+            createModuleDiv(moduleName, moduleDescription);
+        }
 
-        moduleIndex += 1;
-        moduleName = 'module' + moduleIndex;
-
-        moduleDiv = $('<div>');
-        moduleDiv.attr('data-module_name', moduleName);
-        moduleDiv.addClass('module');
-
-        captionDiv = $('<div>');
-        captionDiv.addClass('module_caption');
-        captionDiv.html(moduleName + ': ' + moduleDescription);
-        captionDiv.appendTo(moduleDiv);
-
-        moduleDiv.appendTo('.page');
-
-        return moduleDiv;
+        return moduleDivs[moduleName];
     };
+
+    function createModuleDiv(moduleName, moduleDescription) {
+        moduleDivs[moduleName] = $('<div>');
+        moduleDivs[moduleName].addClass('module');
+
+        moduleDivs[moduleName].addCaption = addCaption;
+        moduleDivs[moduleName].appendToPage =  appendToPage;
+
+        return;
+
+        function addCaption() {
+            var captionDiv;
+
+            captionDiv = $('<div>');
+            captionDiv.addClass('module_caption');
+            captionDiv.html(moduleName + ': ' + moduleDescription);
+            captionDiv.appendTo(moduleDivs[moduleName]);
+        }
+
+        function appendToPage(moduleName) {
+            this.appendTo('.page');
+        }
+    }
 });

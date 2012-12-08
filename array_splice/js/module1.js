@@ -2,7 +2,7 @@ define(['ModuleDiv', 'Output'], function (ModuleDiv, Output) {
     var moduleDiv, p;
 
     // Create an output <div> for our module.
-    moduleDiv = ModuleDiv('object references');
+    moduleDiv = ModuleDiv('module1', 'object references');
 
     // Short hand for output functions we will use.
     p = Output.p.curry(moduleDiv);
@@ -10,6 +10,9 @@ define(['ModuleDiv', 'Output'], function (ModuleDiv, Output) {
     // Module code.
     return function () {
         var myObj, copyOfMyObj;
+
+        moduleDiv.empty();
+        moduleDiv.addCaption();
 
         myObj = {
             'property1': {
@@ -33,5 +36,7 @@ define(['ModuleDiv', 'Output'], function (ModuleDiv, Output) {
         myObj = {};
         p('typeof myObj.property1 = ' + (typeof myObj.property1) + '.');
         p('copyOfMyObj.property1.x = ' + copyOfMyObj.property1.x + '.');
+
+        moduleDiv.appendToPage();
     };
 });

@@ -2,7 +2,7 @@ define(['ModuleDiv', 'Output'], function (ModuleDiv, Output) {
     var moduleDiv, p;
 
     // Create an output <div> for our module.
-    moduleDiv = ModuleDiv('Array.splice');
+    moduleDiv = ModuleDiv('module2', 'Array.splice');
 
     // Short hand for output functions we will use.
     p = Output.p.curry(moduleDiv);
@@ -10,6 +10,9 @@ define(['ModuleDiv', 'Output'], function (ModuleDiv, Output) {
     // Module code.
     return function () {
         var myArray, copyOfMyArray;
+
+        moduleDiv.empty();
+        moduleDiv.addCaption();
 
         myArray = [
             {
@@ -39,5 +42,7 @@ define(['ModuleDiv', 'Output'], function (ModuleDiv, Output) {
 
         p('myArray = ' + JSON.stringify(myArray) + '.');
         p('copyOfMyArray = ' + JSON.stringify(copyOfMyArray) + '.');
+
+        moduleDiv.appendToPage();
     };
 });

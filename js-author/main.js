@@ -21,6 +21,6 @@ requirejs.config({
     }
 });
 
-requirejs(['RunModules'], function (RunModules) {
+requirejs(['RunModules', 'jquery'], function (RunModules, $) {
     RunModules('array_splice', 6);
 });
