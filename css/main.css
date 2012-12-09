@@ -2,9 +2,7 @@
     width: 700px;
     margin-right: auto;
     margin-left: auto;
-    font-family: sans-serif;
-    font-size: 14px;
-    line-height: 1.65em;
+    font-family: "Avant Garde", "Century Gothic", sans-serif;
 }
 
 .toc li {
@@ -40,7 +38,7 @@
 
 .module_caption {
     text-align: center;
-    font-size: 18px;
+    font-size: large;
     border-bottom: 2px dashed #2079D1;
     overflow: hidden;
     word-wrap: break-word;
@@ -65,7 +63,5 @@ pre, p code {
     background-color: black;
     color: yellow;
 
-    font-family: courier;
-    font-size: 13px;
-    line-height: 1.2em;
+    font-family: "Courier New", Courier, monospace;
 }
