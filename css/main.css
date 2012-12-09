@@ -46,8 +46,11 @@
     word-wrap: break-word;
 }
 
-.octocat a img {
+.octocat {
     float: right;
+}
+
+.octocat a img {
     border: none;
     outline: 0px;
 }
