@@ -59,16 +59,9 @@ pre {
     padding: 20px;
     margin-left: -5px;
     margin-right: -5px;
-
-    background-color: black;
-    color: yellow;
-
-    font-family: courier;
-    font-size: 13px;
-    line-height: 1.2em;
 }
 
-p code {
+pre, p code {
     background-color: black;
     color: yellow;
 
