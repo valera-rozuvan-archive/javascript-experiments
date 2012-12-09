@@ -6,7 +6,8 @@ define([], function () {
     return {
         'p': p,
         'out': out,
-        'br': br
+        'br': br,
+        'preCode': preCode
     };
 
     /*
@@ -23,6 +24,10 @@ define([], function () {
 
     function br(moduleDiv) {
         moduleDiv.append('<br />');
+    }
+
+    function preCode(moduleDiv, text) {
+        moduleDiv.append('<pre><code>' + text + '</code></pre>');
     }
 
     /*

@@ -4,7 +4,10 @@ define(
 
     var moduleDiv, p, out;
 
-    moduleDiv = ModuleDiv('Experiments menu. A list of all available JS experiments.');
+    moduleDiv = ModuleDiv(
+        'Experiments menu. A list of all available JS experiments.',
+        'js_author/experiments_menu.js'
+    );
     out = Output.out.curry(moduleDiv);
 
     return ExperimentsMenu;
@@ -16,10 +19,10 @@ define(
 
         out(
             '<div style="text-align: right;">' +
-                'Valera Rozuvan |' +
-                ' <a href="https://github.com/valera-rozuvan/javascript-experiments">' +
-                    'source on GitHub' +
-                '</a>' +
+                '<a href="https://github.com/valera-rozuvan/javascript-experiments">' +
+                    'source' +
+                '</a> ' +
+                '|| click octocat' +
             '</div>'
         );
 
@@ -50,7 +53,7 @@ define(
 
         out(
             '<div style="display: block; clear: both; text-align: right;">' +
-                day + '.' + month + '.' + year +
+                '© ' +year + ' Valera Rozuvan' +
             '</div>'
         );
 

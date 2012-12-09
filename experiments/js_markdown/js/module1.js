@@ -1,8 +1,14 @@
-define(['ModuleDiv', 'Output', 'showdown', 'text!../index.md'], function (ModuleDiv, Output, Showdown, IndexSource) {
+define(
+    ['ModuleDiv', 'Output', 'showdown', 'text!../index.md'],
+    function (ModuleDiv, Output, Showdown, IndexSource) {
+
     var moduleDiv, p, out;
 
     // Create an output <div> for our module.
-    moduleDiv = ModuleDiv('Rendering sample markdown content.');
+    moduleDiv = ModuleDiv(
+        'Rendering sample markdown content.',
+        'experiments/js_markdown/js/module1.js'
+    );
     moduleDiv.hide();
 
     // Short hand for output functions we will use.

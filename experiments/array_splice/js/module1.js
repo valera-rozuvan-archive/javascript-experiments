@@ -2,7 +2,10 @@ define(['ModuleDiv', 'Output', 'jquery'], function (ModuleDiv, Output, $) {
     var moduleDiv, p;
 
     // Create an output <div> for our module.
-    moduleDiv = ModuleDiv('Object references');
+    moduleDiv = ModuleDiv(
+        'Object references',
+        'experiments/array_splice/js/module1.js'
+    );
     moduleDiv.hide();
 
     // Short hand for output functions we will use.

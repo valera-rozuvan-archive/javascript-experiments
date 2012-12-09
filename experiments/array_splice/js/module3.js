@@ -2,7 +2,10 @@ define(['ModuleDiv', 'Output'], function (ModuleDiv, Output) {
     var moduleDiv, p;
 
     // Create an output <div> for our module.
-    moduleDiv = ModuleDiv('Array.slice() method. Part 2.');
+    moduleDiv = ModuleDiv(
+        'Array.slice() method. Part 2.',
+        'experiments/array_splice/js/module3.js'
+    );
     moduleDiv.hide();
 
     // Short hand for output functions we will use.
