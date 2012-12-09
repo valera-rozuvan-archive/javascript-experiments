@@ -46,6 +46,12 @@
     word-wrap: break-word;
 }
 
+.octocat a img {
+    float: right;
+    border: none;
+    outline: 0px;
+}
+
 pre {
     padding: 20px;
     margin-left: -5px;

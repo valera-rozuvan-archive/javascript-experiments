@@ -11,7 +11,8 @@ define(['jquery'], function ($) {
         captionDiv.addClass('module_caption');
         captionDiv.html(moduleDescription);
 
-        gitCatDiv = $('<div style="float: right;">');
+        gitCatDiv = $('<div>');
+        gitCatDiv.addClass('octocat');
         gitCatDiv.html(
             '<a href="https://github.com/valera-rozuvan/javascript-experiments/blob/master/' + githubLink + '">' +
                 '<img src="images/git_cat_icon.png" />' +
