@@ -1,17 +1,34 @@
-[
-    {
-        "moduleName": "Array.splice()",
-        "moduleFolder": "array_splice",
-        "modulesToRun": 5
-    },
-    {
-        "moduleName": "JS Markdown",
-        "moduleFolder": "js_markdown",
-        "modulesToRun": "1"
-    },
-    {
-        "moduleName": "Dynamic functions with eval()",
-        "moduleFolder": "eval_dynamic_func",
-        "modulesToRun": "1"
+{
+"toc":
+    [
+        {
+            "moduleName": "Array.splice()",
+            "moduleFolder": "array_splice",
+            "modulesToRun": 5
+        },
+        {
+            "moduleName": "JS Markdown",
+            "moduleFolder": "js_markdown",
+            "modulesToRun": "1"
+        },
+        {
+            "moduleName": "Dynamic functions with eval()",
+            "moduleFolder": "eval_dynamic_func",
+            "modulesToRun": "1"
+        }
+    ],
+"featured": [
+    "array_splice",
+    "js_markdown",
+    "eval_dynamic_func"
+],
+"all": {
+    "2012": {
+        "December": [
+            "array_splice",
+            "js_markdown",
+            "eval_dynamic_func"
+        ]
     }
-]
+}
+}

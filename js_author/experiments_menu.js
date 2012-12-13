@@ -1,5 +1,28 @@
+/*
+ * experiments_menu.js - An access point to all of the experiments.
+ *
+ *
+ * Copyright 2012 Valera Rozuvan
+ *
+ *
+ * This file is part of javascript-experiments.
+ *
+ * javascript-experiments is free software: you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * javascript-experiments is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 define(
-    ['text!toc.json', 'jquery', 'ModuleDiv', 'Output', 'RunModules'],
+    ['text!../toc.json', 'jquery', 'ModuleDiv', 'Output', 'RunModules'],
     function (Toc, $, ModuleDiv, Output, RunModules) {
 
     var moduleDiv, p, out;
@@ -29,10 +52,10 @@ define(
         toc = JSON.parse(Toc);
 
         out('<ul>');
-        for (c1 = 0; c1 < toc.length; c1 += 1) {
+        for (c1 = 0; c1 < toc.toc.length; c1 += 1) {
             out(
                 '<li data-module_index="' + c1 + '">' +
-                    toc[c1].moduleName  +
+                    toc.toc[c1].moduleName  +
                 '</li>'
             );
         }
@@ -108,12 +131,12 @@ define(
 
                 $(document).attr(
                     'title',
-                    'JavaScript Experiments: ' + toc[moduleIndex].moduleName
+                    'JavaScript Experiments: ' + toc.toc[moduleIndex].moduleName
                 );
 
                 RunModules(
-                    'experiments/' + toc[moduleIndex].moduleFolder,
-                    toc[moduleIndex].modulesToRun
+                    toc.toc[moduleIndex].moduleFolder,
+                    toc.toc[moduleIndex].modulesToRun
                 );
             }
         }

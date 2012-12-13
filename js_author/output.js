@@ -1,3 +1,26 @@
+/*
+ * output.js - Routines for output of content (text, HTML) to a DIV element.
+ *
+ *
+ * Copyright 2012 Valera Rozuvan
+ *
+ *
+ * This file is part of javascript-experiments.
+ *
+ * javascript-experiments is free software: you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * javascript-experiments is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 define([], function () {
     // Add the method curry() to all functions.
     Function.prototype.curry = curry;
@@ -10,10 +33,8 @@ define([], function () {
         'preCode': preCode
     };
 
-    /*
-     * Methods p(), out(), and br() expect a jQuery object moduleDiv on which
-     * they will do their work.
-     */
+    // Methods p(), out(), and br() expect a jQuery object moduleDiv on which
+    // they will do their work.
     function p(moduleDiv, text) {
         moduleDiv.append('<p>' + text + '</p>');
     }
@@ -30,14 +51,12 @@ define([], function () {
         moduleDiv.append('<pre><code>' + text + '</code></pre>');
     }
 
-    /*
-     * Functions toArray() and curry() will simplify calling the same function
-     * similar parameters. Please see the great article at:
-     *
-     *     http://javascriptweblog.wordpress.com/2010/04/05/curry-cooking-up-tastier-functions/
-     *
-     * where I got the idea from.
-     */
+    // Functions toArray() and curry() will simplify calling the same function
+    // with similar parameters. Please see the great article at:
+    //
+    //     http://javascriptweblog.wordpress.com/2010/04/05/curry-cooking-up-tastier-functions/
+    //
+    // where I got the idea from.
     function toArray(args) {
         return Array.prototype.slice.call(args);
     }

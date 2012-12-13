@@ -1,65 +1,96 @@
-define([], function () {
+/*
+ * run_modules.js - Runs all modules contained in an experiment.
+ *
+ *
+ * Copyright 2012 Valera Rozuvan
+ *
+ *
+ * This file is part of javascript-experiments.
+ *
+ * javascript-experiments is free software: you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * javascript-experiments is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+define(['jquery'], function ($) {
     return RunModules;
 
-    function RunModules(moduleDir, modules) {
-        var moduleNames;
+    function RunModules(moduleDir) {
 
-        if (typeof modules === 'undefined') {
-            // The parameter 'modules' is undefined.
-
-            return;
-        } else if ((typeof modules === 'object') && (modules instanceof Array)) {
-            // The parameter 'modules' is an array.
-
-            (function () {
-                var i, moduleNumsToInclude;
-
-                // We will only run modules with numbers specified in the
-                // array.
-                moduleNumsToInclude = modules;
-
-                // We will generate the module names dynamically. They all have
-                // a pattern to their naming scheme.
-                moduleNames = [];
-
-                for (i = 0; i < moduleNumsToInclude.length; i++) {
-                    // Module names start with 'module1', and continue with
-                    // 'module2', 'module3', and so on.
-                    moduleNames.push(moduleDir + '/js/' + 'module' + moduleNumsToInclude[i]);
-                }
-            }());
-        } else if ((typeof modules === 'number') || (isNaN(parseInt(modules, 10)) === false)) {
-            // The parameter 'modules' is of type 'number'.
-
-            (function () {
-                var i, numModules;
-
-                // Total number of JavaScript modules that should be run.
-                numModules = parseInt(modules, 10);
-
-                // We will generate the module names dynamically. They all have
-                // a pattern to their naming scheme.
-                moduleNames = [];
-
-                for (i = 1; i <= numModules; i++) {
-                    // Module names start with 'module1', and continue with
-                    // 'module2', 'module3', and so on.
-                    moduleNames.push(moduleDir + '/js/' + 'module' + i);
-                }
-            }());
-        } else {
-            // The parameter 'modules' is invalid.
-
+        // moduleDir is a path to the directory where the experiment is. It
+        // should be a string.
+        if (typeof moduleDir !== 'string') {
             return;
         }
 
-        require(moduleNames, function () {
-            var i;
+        // Tell Require JS to load the experiment's configuration JSON file.
+        // It will contain the list of modules available for that experiment,
+        // (along with the order that they should be displayed in).
+        require(['text!' + moduleDir + '/config.json'], function (configJson) {
+            var config, c1, moduleNames;
 
-            // Call the module functions sequentially.
-            for (i = 0; i < arguments.length; i++) {
-                arguments[i]();
+            // configJson is the contents of the 'config.json' file, as
+            // retrieved by RequireJS. It should be a string.
+            if (typeof configJson !== 'string') {
+                return;
             }
+
+            try {
+                config = JSON.parse(configJson);
+            } catch (err) {
+
+                // Something went wrong while parsing the configJson string.
+                // Most likely the file was not found, and Require JS gave us
+                // back an empty string. We do not continue.
+                return;
+
+            }
+
+            // We expect an array of module paths (without the trailing '.js').
+            // If we don't get an array, or it is empty, do not continue
+            if (
+                ($.isArray(config.to_run) === false) ||
+                (config.to_run.length === 0)
+            ) {
+                return;
+            }
+
+            moduleNames = [];
+
+            for (c1 = 0; c1 < config.to_run.length; c1 += 1) {
+
+                // First check that it is really a string, and then construct a
+                // path to the module. All modules JS files are to be placed
+                // under the 'js/' directory in the experiment folder.
+                if (typeof config.to_run[c1] === 'string') {
+                    moduleNames.push(moduleDir + '/js/' + config.to_run[c1]);
+                }
+
+            }
+
+            // Tell require JS to load all of the modules defined in the
+            // experiment. The anonymous callback will execute once all of them
+            // have been loaded.
+            require(moduleNames, function () {
+                var i;
+
+                // Call the module functions sequentially.
+                for (i = 0; i < arguments.length; i++) {
+                    arguments[i]();
+                }
+
+            });
+
         });
+
     }
 });
