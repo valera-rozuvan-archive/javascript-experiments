@@ -29,7 +29,7 @@ define(
 
     moduleDiv = ModuleDiv(
         'Experiments menu. A list of all available JS experiments.',
-        'js_author/experiments_menu.js'
+        'experiments/experiments_menu/js/experiments_menu.js'
     );
     out = Output.out.curry(moduleDiv);
 
