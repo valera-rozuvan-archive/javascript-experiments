@@ -22,8 +22,8 @@
  */
 
 define(
-    ['ModuleDiv', 'Output', 'showdown', 'text!../index.md'],
-    function (ModuleDiv, Output, Showdown, IndexSource) {
+    ['ModuleDiv', 'Output', 'showdown', 'text!../index.md', 'Controller'],
+    function (ModuleDiv, Output, Showdown, IndexSource, Controller) {
 
     var moduleDiv, p, out;
 
@@ -53,5 +53,9 @@ define(
 
         moduleDiv.appendToPage();
         moduleDiv.slideDown(500);
+
+
+
+        Controller.attachClickEvents();
     };
 });

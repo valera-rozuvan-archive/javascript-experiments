@@ -77,6 +77,13 @@ define(['jquery'], function ($) {
 
             }
 
+            if (typeof config.experiment_name === 'string') {
+                $(document).attr(
+                    'title',
+                    'JavaScript Experiments: ' + config.experiment_name
+                );
+            }
+
             // Tell require JS to load all of the modules defined in the
             // experiment. The anonymous callback will execute once all of them
             // have been loaded.

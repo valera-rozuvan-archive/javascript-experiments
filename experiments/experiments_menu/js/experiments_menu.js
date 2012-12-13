@@ -22,8 +22,8 @@
  */
 
 define(
-    ['text!../toc.json', 'jquery', 'ModuleDiv', 'Output', 'RunModules'],
-    function (Toc, $, ModuleDiv, Output, RunModules) {
+    ['text!../../../toc.json', 'ModuleDiv', 'Output', 'Controller'],
+    function (Toc, ModuleDiv, Output, Controller) {
 
     var moduleDiv, p, out;
 
@@ -54,7 +54,10 @@ define(
         out('<ul>');
         for (c1 = 0; c1 < toc.toc.length; c1 += 1) {
             out(
-                '<li data-module_index="' + c1 + '">' +
+                '<li ' +
+                    'class="experiment_link" ' +
+                    'data-src_folder="' + toc.toc[c1].moduleFolder + '" ' +
+                    'data-module_index="' + c1 + '">' +
                     toc.toc[c1].moduleName  +
                 '</li>'
             );
@@ -80,65 +83,8 @@ define(
             '</div>'
         );
 
-        // Whenever an item in the menu is clicked, we will hide what is
-        // already showing, and then show the content for the clicked item.
-        moduleDiv.children('li').each(function (index, value) {
-            $(value).click(function () {
-                return menuItemClickHandler($(value).data('module_index'));
-            });
-        });
-
         moduleDiv.appendToSelector('.toc');
 
-        return;
-
-        function menuItemClickHandler(moduleIndex) {
-            var numDivsLeft, divsToProcess;
-
-            // $('.page').empty();
-
-            // Instead of a simple empty(), let us do something a bit more
-            // fancy. We will get all of the DIVs that must be removed, and
-            // we will hide them using the jQuery's slide up event. The
-            // last DIV to slide up will call the function to show the next
-            // set of content DIVs. If there are no DIVs to slide up, then
-            // we simply call the function to show the next set of content
-            // DIVs.
-
-            divsToProcess = $('.page').children('.module');
-
-            if (divsToProcess.length === 0) {
-                showSelectedExperiment();
-            } else {
-                numDivsLeft = divsToProcess.length;
-
-                divsToProcess.each(function (index, value) {
-                    $(value).slideUp(500, function () {
-                        numDivsLeft -= 1;
-
-                        if (numDivsLeft === 0) {
-                            showSelectedExperiment();
-                        }
-                    });
-                });
-            }
-
-            return;
-
-            // Function to show the next set of content DIVs.
-            function showSelectedExperiment() {
-                $('.page').empty();
-
-                $(document).attr(
-                    'title',
-                    'JavaScript Experiments: ' + toc.toc[moduleIndex].moduleName
-                );
-
-                RunModules(
-                    toc.toc[moduleIndex].moduleFolder,
-                    toc.toc[moduleIndex].modulesToRun
-                );
-            }
-        }
+        Controller.attachClickEvents();
     }
 });

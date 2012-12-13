@@ -33,7 +33,8 @@ requirejs.config({
         'Output': '../js_author/output',
         'ModuleDiv': '../js_author/module_div',
         'RunModules': '../js_author/run_modules',
-        'ExperimentsMenu': '../js_author/experiments_menu'
+        'ExperimentsMenu': '../js_author/experiments_menu',
+        'Controller': '../js_author/controller'
     },
     'shim': {
         'showdown': {
@@ -44,7 +45,7 @@ requirejs.config({
 });
 
 // Main point of entrance into JavaScript code.
-requirejs(['jquery', 'ExperimentsMenu'], function ($, ExperimentsMenu) {
+requirejs(['jquery', 'RunModules'], function ($, RunModules) {
 
     // Just in case. This will tell jQuery to return the global $ variable it
     // created back to it's previous state. Even thought we will not use other
@@ -53,7 +54,8 @@ requirejs(['jquery', 'ExperimentsMenu'], function ($, ExperimentsMenu) {
     // dependency system.
     $.noConflict();
 
-    // Show the menu. All of the experiments are accessible from it.
-    ExperimentsMenu();
+    // Show the menu - a special JavaScript experiment. All of the experiments
+    // are accessible from it.
+    RunModules('experiments_menu');
 
 });
