@@ -33,8 +33,8 @@ requirejs.config({
         'Output': '../js_author/output',
         'ModuleDiv': '../js_author/module_div',
         'RunModules': '../js_author/run_modules',
-        'ExperimentsMenu': '../js_author/experiments_menu',
-        'Controller': '../js_author/controller'
+        'Controller': '../js_author/controller',
+        'ContentManager': '../js_author/content_manager'
     },
     'shim': {
         'showdown': {

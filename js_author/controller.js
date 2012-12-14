@@ -1,3 +1,26 @@
+/*
+ * controller.js - Switch current experiment, process links to experiments.
+ *
+ *
+ * Copyright 2012 Valera Rozuvan
+ *
+ *
+ * This file is part of javascript-experiments.
+ *
+ * javascript-experiments is free software: you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * javascript-experiments is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 define('Controller', ['jquery', 'RunModules'], function ($, RunModules) {
 
     return {
@@ -50,8 +73,6 @@ define('Controller', ['jquery', 'RunModules'], function ($, RunModules) {
         $('.experiment_link').each(function (index, value) {
             var src_folder, click_attached;
 
-            console.log('Found!');
-
             src_folder = $(value).data('src_folder');
             click_attached = $(value).data('click_attached');
 
@@ -60,15 +81,9 @@ define('Controller', ['jquery', 'RunModules'], function ($, RunModules) {
                 (src_folder.length > 0) &&
                 (typeof click_attached === 'undefined')
             ) {
-                console.log(
-                    'Found a "experiment_link" element. ' +
-                    'src_folder = "' + src_folder + '".'
-                );
-
                 $(value).attr('data-click_attached', 'true');
 
                 $(value).on('click', function () {
-                    console.log(src_folder);
                     switchExperiment(src_folder);
                 });
             }

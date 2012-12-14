@@ -1,4 +1,5 @@
 {
+    "name": "Dynamic functions with eval()",
     "to_run": [
         "module1"
     ]

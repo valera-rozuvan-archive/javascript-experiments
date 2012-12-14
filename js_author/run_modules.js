@@ -77,10 +77,10 @@ define(['jquery'], function ($) {
 
             }
 
-            if (typeof config.experiment_name === 'string') {
+            if (typeof config.name === 'string') {
                 $(document).attr(
                     'title',
-                    'JavaScript Experiments: ' + config.experiment_name
+                    'JavaScript Experiments: ' + config.name
                 );
             }
 

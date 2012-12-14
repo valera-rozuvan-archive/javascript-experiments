@@ -1,5 +1,5 @@
 /*
- * experiments_menu.js - An access point to all of the experiments.
+ * experiments_menu.js - An access point to experiments, and other stuff.
  *
  *
  * Copyright 2012 Valera Rozuvan
@@ -22,21 +22,23 @@
  */
 
 define(
-    ['text!../../../toc.json', 'ModuleDiv', 'Output', 'Controller'],
-    function (Toc, ModuleDiv, Output, Controller) {
+    ['ModuleDiv', 'Output', 'Controller', 'ContentManager'],
+    function (ModuleDiv, Output, Controller, ContentManager) {
 
-    var moduleDiv, p, out;
+    var moduleDiv, p, out, featured;
 
     moduleDiv = ModuleDiv(
-        'Experiments menu. A list of all available JS experiments.',
+        'Featured JS experiments',
         'experiments/experiments_menu/js/experiments_menu.js'
     );
     out = Output.out.curry(moduleDiv);
 
+    featured = ContentManager.featured;
+
     return ExperimentsMenu;
 
     function ExperimentsMenu() {
-        var toc, c1, todaysDate, day, month, year;
+        var c1, todaysDate, day, month, year;
 
         moduleDiv.addCaption();
 
@@ -49,16 +51,13 @@ define(
             '</div>'
         );
 
-        toc = JSON.parse(Toc);
-
         out('<ul>');
-        for (c1 = 0; c1 < toc.toc.length; c1 += 1) {
+        for (c1 = 0; c1 < featured.length; c1 += 1) {
             out(
                 '<li ' +
                     'class="experiment_link" ' +
-                    'data-src_folder="' + toc.toc[c1].moduleFolder + '" ' +
-                    'data-module_index="' + c1 + '">' +
-                    toc.toc[c1].moduleName  +
+                    'data-src_folder="' + featured[c1].srcFolder + '">' +
+                    featured[c1].name  +
                 '</li>'
             );
         }
