@@ -34,7 +34,11 @@ requirejs.config({
         'ModuleDiv': '../js_author/module_div',
         'RunModules': '../js_author/run_modules',
         'Controller': '../js_author/controller',
-        'ContentManager': '../js_author/content_manager'
+        'ContentManager': '../js_author/content_manager',
+
+        'ExtMd': '../js_author/ext/md',
+
+        'logme': '../js_author/logme'
     },
     'shim': {
         'showdown': {

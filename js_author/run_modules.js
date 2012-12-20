@@ -21,7 +21,7 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-define(['jquery'], function ($) {
+define(['jquery', 'logme', 'ExtMd'], function ($, logme, ExtMd) {
     return RunModules;
 
     function RunModules(moduleDir) {
@@ -36,7 +36,7 @@ define(['jquery'], function ($) {
         // It will contain the list of modules available for that experiment,
         // (along with the order that they should be displayed in).
         require(['text!' + moduleDir + '/config.json'], function (configJson) {
-            var config, c1, moduleNames;
+            var config, c1, moduleNames, matches;
 
             // configJson is the contents of the 'config.json' file, as
             // retrieved by RequireJS. It should be a string.
@@ -47,12 +47,17 @@ define(['jquery'], function ($) {
             try {
                 config = JSON.parse(configJson);
             } catch (err) {
+                logme(
+                    'Something went wrong while parsing the configJson ' +
+                    'string. Most likely the file "' +
+                    moduleDir + '/config.json' + '" was not found, and ' +
+                    'Require JS gave us back an empty string. We do not ' +
+                    'continue.',
 
-                // Something went wrong while parsing the configJson string.
-                // Most likely the file was not found, and Require JS gave us
-                // back an empty string. We do not continue.
+                    'JSON.parse() returned with error message: "' + err.message + '".'
+                );
+
                 return;
-
             }
 
             // We expect an array of module paths (without the trailing '.js').
@@ -72,7 +77,16 @@ define(['jquery'], function ($) {
                 // path to the module. All modules JS files are to be placed
                 // under the 'js/' directory in the experiment folder.
                 if (typeof config.to_run[c1] === 'string') {
-                    moduleNames.push(moduleDir + '/js/' + config.to_run[c1]);
+
+                    matches = config.to_run[c1].match(/^md!(.*)$/);
+                    if (matches !== null) {
+                        logme(matches);
+
+                        moduleNames.push('text!' + moduleDir + '/md/' + matches[1]);
+                        // continue;
+                    } else {
+                        moduleNames.push(moduleDir + '/js/' + config.to_run[c1]);
+                    }
                 }
 
             }
@@ -92,7 +106,12 @@ define(['jquery'], function ($) {
 
                 // Call the module functions sequentially.
                 for (i = 0; i < arguments.length; i++) {
-                    arguments[i]();
+                    if (typeof arguments[i] === 'string') {
+                        // logme('Got a string for a module.');
+                        ExtMd(arguments[i]);
+                    } else {
+                        arguments[i]();
+                    }
                 }
 
             });

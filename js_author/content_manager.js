@@ -21,7 +21,7 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-define('ContentManager', ['text!../toc.json', 'jquery'], function (Toc, $) {
+define(['text!../toc.json', 'jquery'], function (Toc, $) {
     var toc, featured, c1;
 
     featured = [];
@@ -37,6 +37,17 @@ define('ContentManager', ['text!../toc.json', 'jquery'], function (Toc, $) {
     // If parse went OK, lets see what we got.
     if (toc !== undefined) {
 
+        parseFeatured();
+
+    } // End-of: if (toc !== undefined)
+
+    // Other modules can use this module's return object to access the
+    // available content of 'toc.json' without parsing it themselves.
+    return {
+        'featured': featured
+    };
+
+    function parseFeatured() {
         // See if the 'featured' section is present. It must be an array.
         if ($.isArray(toc.featured) === true) {
 
@@ -63,12 +74,5 @@ define('ContentManager', ['text!../toc.json', 'jquery'], function (Toc, $) {
             }
 
         } // End-of: if ($.isArray(toc.featured) === true)
-
-    } // End-of: if (toc !== undefined)
-
-    // Other modules can use this module's return object to access the
-    // available content of 'toc.json' without parsing it themselves.
-    return {
-        'featured': featured
-    };
+    }
 });

@@ -21,7 +21,7 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-define('Controller', ['jquery', 'RunModules'], function ($, RunModules) {
+define(['jquery', 'RunModules'], function ($, RunModules) {
 
     return {
         'switchExperiment': switchExperiment,

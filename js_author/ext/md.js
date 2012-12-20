@@ -1,5 +1,5 @@
 /*
- * module1.js - Part of "JS Markdown" JavaScript experiment.
+ * md.js - Create a module DIV from a MarkDown file without a JS definition.
  *
  *
  * Copyright 2012 Valera Rozuvan
@@ -22,31 +22,30 @@
  */
 
 define(
-    ['ModuleDiv', 'Output', 'showdown', 'text!../index.md', 'Controller'],
-    function (ModuleDiv, Output, Showdown, IndexSource, Controller) {
+    ['ModuleDiv', 'Output', 'showdown', 'logme'],
+    function (ModuleDiv, Output, Showdown, logme) {
 
-    var moduleDiv, p, out;
+    return ExtMd;
 
-    // Create an output <div> for our module.
-    moduleDiv = ModuleDiv(
-        'Rendering sample markdown content.',
-        'experiments/js_markdown/js/module1.js'
-    );
-    moduleDiv.hide();
+    function ExtMd(mdText) {
+        var moduleDiv, p, out, converter, convertedText;
 
-    // Short hand for output functions we will use.
-    p = Output.p.curry(moduleDiv);
-    out = Output.out.curry(moduleDiv);
+        // Create an output <div> for our module.
+        moduleDiv = ModuleDiv(
+            'Rendering sample markdown content.',
+            'experiments/js_markdown/js/module1.js'
+        );
+        moduleDiv.hide();
 
-    // Module code.
-    return function () {
-        var converter, convertedText;
+        // Short hand for output functions we will use.
+        p = Output.p.curry(moduleDiv);
+        out = Output.out.curry(moduleDiv);
 
         moduleDiv.empty();
         moduleDiv.addCaption();
 
         converter = new Showdown.converter();
-        convertedText = converter.makeHtml(IndexSource);
+        convertedText = converter.makeHtml(mdText);
 
         p('Experimenting with text.');
         out(convertedText);
@@ -54,6 +53,6 @@ define(
         moduleDiv.appendToPage();
         moduleDiv.slideDown(500);
 
-        Controller.attachClickEvents();
-    };
+        // Controller.attachClickEvents();
+    }
 });
