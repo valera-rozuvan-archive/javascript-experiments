@@ -65,3 +65,9 @@ pre, p code {
 
     font-family: "Courier New", Courier, monospace;
 }
+
+a, span.experiment_link {
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+}

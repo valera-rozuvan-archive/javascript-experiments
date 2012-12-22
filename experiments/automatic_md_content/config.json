@@ -1,0 +1,6 @@
+{
+    "name": "Automatic MD content",
+    "to_run": [
+        "md!test.md"
+    ]
+}

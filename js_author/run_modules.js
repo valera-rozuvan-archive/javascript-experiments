@@ -21,7 +21,7 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-define(['jquery', 'logme', 'ExtMd'], function ($, logme, ExtMd) {
+define(['jquery', 'logme'], function ($, logme) {
     return RunModules;
 
     function RunModules(moduleDir) {
@@ -80,10 +80,8 @@ define(['jquery', 'logme', 'ExtMd'], function ($, logme, ExtMd) {
 
                     matches = config.to_run[c1].match(/^md!(.*)$/);
                     if (matches !== null) {
-                        logme(matches);
-
                         moduleNames.push('text!' + moduleDir + '/md/' + matches[1]);
-                        // continue;
+                        moduleNames.push('ExtMd');
                     } else {
                         moduleNames.push(moduleDir + '/js/' + config.to_run[c1]);
                     }
@@ -107,8 +105,8 @@ define(['jquery', 'logme', 'ExtMd'], function ($, logme, ExtMd) {
                 // Call the module functions sequentially.
                 for (i = 0; i < arguments.length; i++) {
                     if (typeof arguments[i] === 'string') {
-                        // logme('Got a string for a module.');
-                        ExtMd(arguments[i]);
+                        arguments[i + 1](arguments[i]);
+                        i += 1;
                     } else {
                         arguments[i]();
                     }

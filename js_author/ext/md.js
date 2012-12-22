@@ -22,37 +22,54 @@
  */
 
 define(
-    ['ModuleDiv', 'Output', 'showdown', 'logme'],
-    function (ModuleDiv, Output, Showdown, logme) {
+    ['ModuleDiv', 'Output', 'showdown', 'Controller', 'logme'],
+    function (ModuleDiv, Output, Showdown, Controller, logme) {
 
     return ExtMd;
 
     function ExtMd(mdText) {
-        var moduleDiv, p, out, converter, convertedText;
+        var moduleDiv, converter, caption, link;
 
-        // Create an output <div> for our module.
+        caption = '';
+        link = '';
+
+        // Remove any leading whitespace and EOL characters.
+        mdText = mdText.replace(/^[\s\n]+/, '');
+
+        (function GetCaption(matches) {
+            if ((matches !== null) && (typeof matches[1] === 'string')) {
+                caption = matches[1];
+                mdText = mdText.replace(matches[0], '');
+                mdText = mdText.replace(/^[\s\n]+/, '');
+            }
+        }(mdText.match(/^##\[CAPTION\[(.*)\]\]##/)));
+
+        (function GetLink(matches) {
+            if ((matches !== null) && (typeof matches[1] === 'string')) {
+                link = matches[1];
+                mdText = mdText.replace(matches[0], '');
+                mdText = mdText.replace(/^[\s\n]+/, '');
+            }
+        }(mdText.match(/^##\[LINK\[(.*)\]\]##/)));
+
+        // Remove any trailing whitespace and EOL characters.
+        mdText = mdText.replace(/[\s\n]+$/, '');
+
         moduleDiv = ModuleDiv(
-            'Rendering sample markdown content.',
-            'experiments/js_markdown/js/module1.js'
+            caption,
+            link
         );
         moduleDiv.hide();
-
-        // Short hand for output functions we will use.
-        p = Output.p.curry(moduleDiv);
-        out = Output.out.curry(moduleDiv);
 
         moduleDiv.empty();
         moduleDiv.addCaption();
 
         converter = new Showdown.converter();
-        convertedText = converter.makeHtml(mdText);
-
-        p('Experimenting with text.');
-        out(convertedText);
+        Output.out(moduleDiv, converter.makeHtml(mdText));
 
         moduleDiv.appendToPage();
         moduleDiv.slideDown(500);
 
-        // Controller.attachClickEvents();
+        Controller.attachClickEvents();
     }
 });

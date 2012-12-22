@@ -21,7 +21,7 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-define(['text!../toc.json', 'jquery'], function (Toc, $) {
+define(['text!../toc.json', 'jquery', 'logme'], function (Toc, $, logme) {
     var toc, featured, c1;
 
     featured = [];
@@ -31,6 +31,9 @@ define(['text!../toc.json', 'jquery'], function (Toc, $) {
     try {
         toc = JSON.parse(Toc);
     } catch (err) {
+        logme('ERROR: Could not parse the toc.json file.');
+        logme('Error message: "' + err.message + '".');
+
         toc = undefined;
     }
 
