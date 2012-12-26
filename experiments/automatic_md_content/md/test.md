@@ -1,5 +1,5 @@
-##[CAPTION[Automatic rendering of MD file]]##
-##[LINK[experiments/automatic_md_content/md/test.md]]##
+<!--- CAPTION[Automatic rendering of MD file] -->
+<!--- LINK[experiments/automatic_md_content/md/test.md] -->
 
 This is a test md.
 

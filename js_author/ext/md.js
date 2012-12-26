@@ -42,7 +42,7 @@ define(
                 mdText = mdText.replace(matches[0], '');
                 mdText = mdText.replace(/^[\s\n]+/, '');
             }
-        }(mdText.match(/^##\[CAPTION\[(.*)\]\]##/)));
+        }(mdText.match(/^<!--- CAPTION\[(.*)\] -->/)));
 
         (function GetLink(matches) {
             if ((matches !== null) && (typeof matches[1] === 'string')) {
@@ -50,7 +50,7 @@ define(
                 mdText = mdText.replace(matches[0], '');
                 mdText = mdText.replace(/^[\s\n]+/, '');
             }
-        }(mdText.match(/^##\[LINK\[(.*)\]\]##/)));
+        }(mdText.match(/^<!--- LINK\[(.*)\] -->/)));
 
         // Remove any trailing whitespace and EOL characters.
         mdText = mdText.replace(/[\s\n]+$/, '');
