@@ -26,12 +26,6 @@ define(['jquery', 'logme'], function ($, logme) {
 
     function RunModules(moduleDir) {
 
-        // moduleDir is a path to the directory where the experiment is. It
-        // should be a string.
-        if (typeof moduleDir !== 'string') {
-            return;
-        }
-
         // Tell Require JS to load the experiment's configuration JSON file.
         // It will contain the list of modules available for that experiment,
         // (along with the order that they should be displayed in).
@@ -41,6 +35,12 @@ define(['jquery', 'logme'], function ($, logme) {
             // configJson is the contents of the 'config.json' file, as
             // retrieved by RequireJS. It should be a string.
             if (typeof configJson !== 'string') {
+                logme(
+                    'ERROR: While trying to retrieve the contents (text) ' +
+                    'from the "' + moduleDir + '/config.json" file, we did ' +
+                    'not get a string.'
+                );
+
                 return;
             }
 
@@ -49,12 +49,12 @@ define(['jquery', 'logme'], function ($, logme) {
             } catch (err) {
                 logme(
                     'Something went wrong while parsing the configJson ' +
-                    'string. Most likely the file "' +
-                    moduleDir + '/config.json' + '" was not found, and ' +
-                    'Require JS gave us back an empty string. We do not ' +
-                    'continue.',
+                    'string. Most likely the file "' + moduleDir +
+                    '/config.json" was not found, and Require JS gave us ' +
+                    'back an empty string. We do not continue.',
 
-                    'JSON.parse() returned with error message: "' + err.message + '".'
+                    'JSON.parse() returned with error message: "' +
+                    err.message + '".'
                 );
 
                 return;
@@ -66,6 +66,11 @@ define(['jquery', 'logme'], function ($, logme) {
                 ($.isArray(config.to_run) === false) ||
                 (config.to_run.length === 0)
             ) {
+                logme(
+                    'ERROR: The file "' + moduleDir + '/config.json" does ' +
+                    'not specify a "to_run" array, or it is empty.'
+                );
+
                 return;
             }
 

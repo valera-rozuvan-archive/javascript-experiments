@@ -71,20 +71,19 @@ define(['jquery', 'RunModules'], function ($, RunModules) {
 
     function attachClickEvents() {
         $('.experiment_link').each(function (index, value) {
-            var src_folder, click_attached;
+            var srcFolder, clickAttached;
 
-            src_folder = $(value).data('src_folder');
-            click_attached = $(value).data('click_attached');
+            srcFolder = $(value).attr('data-src_folder');
+            clickAttached = $(value).attr('data-click_attached');
 
             if (
-                (typeof src_folder === 'string') &&
-                (src_folder.length > 0) &&
-                (typeof click_attached === 'undefined')
+                (typeof srcFolder === 'string') &&
+                (typeof clickAttached !== 'string')
             ) {
                 $(value).attr('data-click_attached', 'true');
 
                 $(value).on('click', function () {
-                    switchExperiment(src_folder);
+                    switchExperiment(srcFolder);
                 });
             }
         });

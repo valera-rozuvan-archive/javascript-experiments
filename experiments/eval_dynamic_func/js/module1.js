@@ -22,7 +22,7 @@
  */
 
 define(['ModuleDiv'], function (ModuleDiv) {
-    var moduleDiv, p;
+    var moduleDiv, p, preCode;
 
     moduleDiv = ModuleDiv(
         'Simple x + 7',

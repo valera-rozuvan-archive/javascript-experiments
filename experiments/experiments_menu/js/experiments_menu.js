@@ -25,7 +25,7 @@ define(
     ['ModuleDiv', 'Controller', 'ContentManager'],
     function (ModuleDiv, Controller, ContentManager) {
 
-    var moduleDiv, p, out, featured;
+    var moduleDiv, out, featured;
 
     moduleDiv = ModuleDiv(
         'Featured JS experiments',
@@ -38,7 +38,7 @@ define(
     return ExperimentsMenu;
 
     function ExperimentsMenu() {
-        var c1, todaysDate, day, month, year;
+        var c1, todaysDate, year;
 
         moduleDiv.addCaption();
 
@@ -56,7 +56,8 @@ define(
             out(
                 '<li ' +
                     'class="experiment_link" ' +
-                    'data-src_folder="' + featured[c1].srcFolder + '">' +
+                    'data-src_folder="' + featured[c1].srcFolder + '" ' +
+                '>' +
                     featured[c1].name  +
                 '</li>'
             );
@@ -64,17 +65,7 @@ define(
         out('</ul>');
 
         todaysDate = new Date();
-
-        day = todaysDate.getDate();
-        month = todaysDate.getMonth() + 1; // January is 0.
         year = todaysDate.getFullYear();
-
-        if (day < 10) {
-            day = '0' + day;
-        }
-        if (month < 10) {
-            month = '0' + month;
-        }
 
         out(
             '<div style="display: block; clear: both; text-align: right;">' +

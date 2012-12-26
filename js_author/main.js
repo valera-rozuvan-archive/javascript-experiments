@@ -49,10 +49,7 @@ requirejs.config({
 });
 
 // Main point of entrance into JavaScript code.
-requirejs(
-    ['jquery', 'RunModules'],
-    function ($, RunModules) {
-
+requirejs(['jquery', 'RunModules'], function ($, RunModules) {
     // Just in case. This will tell jQuery to return the global $ variable it
     // created back to it's previous state. Even thought we will not use other
     // libraries which also define a $ variable, we will still perform this
@@ -63,5 +60,4 @@ requirejs(
     // Show the menu - a special JavaScript experiment. All of the experiments
     // are accessible from it.
     RunModules('experiments_menu');
-
 });

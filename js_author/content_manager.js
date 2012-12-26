@@ -22,7 +22,7 @@
  */
 
 define(['text!../toc.json', 'jquery', 'logme'], function (Toc, $, logme) {
-    var toc, featured, c1;
+    var toc, featured;
 
     featured = [];
 
@@ -39,10 +39,8 @@ define(['text!../toc.json', 'jquery', 'logme'], function (Toc, $, logme) {
 
     // If parse went OK, lets see what we got.
     if (toc !== undefined) {
-
         parseFeatured();
-
-    } // End-of: if (toc !== undefined)
+    }
 
     // Other modules can use this module's return object to access the
     // available content of 'toc.json' without parsing it themselves.
@@ -51,6 +49,8 @@ define(['text!../toc.json', 'jquery', 'logme'], function (Toc, $, logme) {
     };
 
     function parseFeatured() {
+        var c1;
+
         // See if the 'featured' section is present. It must be an array.
         if ($.isArray(toc.featured) === true) {
 
@@ -77,5 +77,5 @@ define(['text!../toc.json', 'jquery', 'logme'], function (Toc, $, logme) {
             }
 
         } // End-of: if ($.isArray(toc.featured) === true)
-    }
+    } // End-of: function parseFeatured
 });
