@@ -22,38 +22,29 @@
  */
 
 define(
-    ['ModuleDiv', 'Output', 'showdown', 'text!../index.md', 'Controller'],
-    function (ModuleDiv, Output, Showdown, IndexSource, Controller) {
+    ['ModuleDiv', 'showdown', 'text!../md/index.md'],
+    function (ModuleDiv, Showdown, IndexSource) {
 
     var moduleDiv, p, out;
 
-    // Create an output <div> for our module.
     moduleDiv = ModuleDiv(
         'Rendering sample markdown content.',
         'experiments/js_markdown/js/module1.js'
     );
-    moduleDiv.hide();
 
-    // Short hand for output functions we will use.
-    p = Output.p.curry(moduleDiv);
-    out = Output.out.curry(moduleDiv);
+    p = moduleDiv.p;
+    out = moduleDiv.out;
 
-    // Module code.
     return function () {
-        var converter, convertedText;
+        var converter;
 
-        moduleDiv.empty();
-        moduleDiv.addCaption();
-
-        converter = new Showdown.converter();
-        convertedText = converter.makeHtml(IndexSource);
+        moduleDiv.prepare();
 
         p('Experimenting with text.');
-        out(convertedText);
 
-        moduleDiv.appendToPage();
-        moduleDiv.slideDown(500);
+        converter = new Showdown.converter();
+        out(converter.makeHtml(IndexSource));
 
-        Controller.attachClickEvents();
+        moduleDiv.publish();
     };
 });

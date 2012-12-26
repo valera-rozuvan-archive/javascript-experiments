@@ -21,44 +21,71 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-define(['jquery'], function ($) {
+define(['jquery', 'Controller', 'Output'], function ($, Controller, Output) {
     return ModuleDiv;
 
     function ModuleDiv(moduleDescription, githubLink) {
-        var moduleDiv, captionDiv;
+        var moduleDiv, el;
 
-        moduleDiv = $('<div>');
-        moduleDiv.addClass('module');
+        el = $('<div>');
+        el.addClass('module');
 
-        captionDiv = $('<div>');
-        captionDiv.addClass('module_caption');
-        captionDiv.html(moduleDescription);
+        moduleDiv = {
+            'el': el,
 
-        gitCatDiv = $('<div>');
-        gitCatDiv.addClass('octocat');
-        gitCatDiv.html(
+            'addCaption': addCaption,
+            'appendToPage': appendToPage,
+            'appendToSelector': appendToSelector,
+
+            'prepare': prepare,
+            'publish': publish,
+
+            // Provide Output methods to JS Exp. module.
+            'p': Output.p.curry(el),
+            'out': Output.out.curry(el),
+            'br': Output.br.curry(el),
+            'preCode': Output.preCode.curry(el)
+        };
+
+        el = $('<div>');
+        el.addClass('module_caption');
+        el.html(moduleDescription);
+        moduleDiv.captionEl = el;
+
+        el = $('<div>');
+        el.addClass('octocat');
+        el.html(
             '<a href="https://github.com/valera-rozuvan/javascript-experiments/blob/master/' + githubLink + '">' +
                 '<img src="images/git_cat_icon.png" />' +
             '</a>'
         );
-        gitCatDiv.appendTo(captionDiv);
-
-        moduleDiv.addCaption = addCaption;
-        moduleDiv.appendToPage =  appendToPage;
-        moduleDiv.appendToSelector =  appendToSelector;
+        el.appendTo(moduleDiv.captionEl);
 
         return moduleDiv;
 
         function addCaption() {
-            captionDiv.appendTo(moduleDiv);
+            this.captionEl.appendTo(this.el);
         }
 
         function appendToPage() {
-            this.appendTo('.page');
+            this.el.appendTo('.page');
         }
 
         function appendToSelector(divSelector) {
-            this.appendTo(divSelector);
+            this.el.appendTo(divSelector);
+        }
+
+        function prepare() {
+            this.el.hide();
+            this.el.empty();
+            this.addCaption();
+        }
+
+        function publish() {
+            this.appendToPage();
+            this.el.slideDown(500);
+
+            Controller.attachClickEvents();
         }
     }
 });

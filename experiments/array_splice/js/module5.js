@@ -21,25 +21,20 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-define(['ModuleDiv', 'Output'], function (ModuleDiv, Output) {
+define(['ModuleDiv'], function (ModuleDiv) {
     var moduleDiv, p;
 
-    // Create an output <div> for our module.
     moduleDiv = ModuleDiv(
         'Array.slice() method. Part 4.',
         'experiments/array_splice/js/module5.js'
     );
-    moduleDiv.hide();
 
-    // Short hand for output functions we will use.
-    p = Output.p.curry(moduleDiv);
+    p = moduleDiv.p;
 
-    // Module code.
     return function () {
         var myArray, copyOfMyArray, obj1, obj2, obj3;
 
-        moduleDiv.empty();
-        moduleDiv.addCaption();
+        moduleDiv.prepare();
 
         obj1 = {'x': 100};
         obj2 = {'x': 200};
@@ -65,7 +60,6 @@ define(['ModuleDiv', 'Output'], function (ModuleDiv, Output) {
         p('myArray = ' + JSON.stringify(myArray) + '.');
         p('copyOfMyArray = ' + JSON.stringify(copyOfMyArray) + '.');
 
-        moduleDiv.appendToPage();
-        moduleDiv.slideDown(500);
+        moduleDiv.publish();
     };
 });

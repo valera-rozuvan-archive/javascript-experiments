@@ -22,8 +22,8 @@
  */
 
 define(
-    ['ModuleDiv', 'Output', 'Controller', 'ContentManager'],
-    function (ModuleDiv, Output, Controller, ContentManager) {
+    ['ModuleDiv', 'Controller', 'ContentManager'],
+    function (ModuleDiv, Controller, ContentManager) {
 
     var moduleDiv, p, out, featured;
 
@@ -31,7 +31,7 @@ define(
         'Featured JS experiments',
         'experiments/experiments_menu/js/experiments_menu.js'
     );
-    out = Output.out.curry(moduleDiv);
+    out = moduleDiv.out;
 
     featured = ContentManager.featured;
 

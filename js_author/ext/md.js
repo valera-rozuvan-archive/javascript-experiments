@@ -21,10 +21,7 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-define(
-    ['ModuleDiv', 'Output', 'showdown', 'Controller', 'logme'],
-    function (ModuleDiv, Output, Showdown, Controller, logme) {
-
+define(['ModuleDiv', 'showdown'], function (ModuleDiv, Showdown) {
     return ExtMd;
 
     function ExtMd(mdText) {
@@ -55,21 +52,12 @@ define(
         // Remove any trailing whitespace and EOL characters.
         mdText = mdText.replace(/[\s\n]+$/, '');
 
-        moduleDiv = ModuleDiv(
-            caption,
-            link
-        );
-        moduleDiv.hide();
-
-        moduleDiv.empty();
-        moduleDiv.addCaption();
+        moduleDiv = ModuleDiv(caption, link, true);
+        moduleDiv.prepare();
 
         converter = new Showdown.converter();
-        Output.out(moduleDiv, converter.makeHtml(mdText));
+        moduleDiv.out(converter.makeHtml(mdText));
 
-        moduleDiv.appendToPage();
-        moduleDiv.slideDown(500);
-
-        Controller.attachClickEvents();
+        moduleDiv.publish();
     }
 });

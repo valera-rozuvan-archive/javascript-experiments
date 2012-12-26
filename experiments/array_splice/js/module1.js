@@ -21,25 +21,20 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-define(['ModuleDiv', 'Output'], function (ModuleDiv, Output) {
+define(['ModuleDiv'], function (ModuleDiv) {
     var moduleDiv, p;
 
-    // Create an output <div> for our module.
     moduleDiv = ModuleDiv(
         'Object references',
         'experiments/array_splice/js/module1.js'
     );
-    moduleDiv.hide();
 
-    // Short hand for output functions we will use.
-    p = Output.p.curry(moduleDiv);
+    p = moduleDiv.p;
 
-    // Module code.
     return function () {
         var myObj, copyOfMyObj;
 
-        moduleDiv.empty();
-        moduleDiv.addCaption();
+        moduleDiv.prepare();
 
         myObj = {
             'property1': {
@@ -64,7 +59,6 @@ define(['ModuleDiv', 'Output'], function (ModuleDiv, Output) {
         p('typeof myObj.property1 = ' + (typeof myObj.property1) + '.');
         p('copyOfMyObj.property1.x = ' + copyOfMyObj.property1.x + '.');
 
-        moduleDiv.appendToPage();
-        moduleDiv.slideDown(500);
+        moduleDiv.publish();
     };
 });

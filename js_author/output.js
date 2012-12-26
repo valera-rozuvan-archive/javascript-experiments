@@ -30,25 +30,30 @@ define([], function () {
         'p': p,
         'out': out,
         'br': br,
+        'pre': pre,
         'preCode': preCode
     };
 
-    // Methods p(), out(), and br() expect a jQuery object moduleDiv on which
-    // they will do their work.
-    function p(moduleDiv, text) {
-        moduleDiv.append('<p>' + text + '</p>');
+    // Methods p(), out(), br(), ... expect a jQuery object (DOM element) on
+    // which they will do their work.
+    function p(el, text) {
+        el.append('<p>' + text + '</p>');
     }
 
-    function out(moduleDiv, text) {
-        moduleDiv.append(text);
+    function out(el, text) {
+        el.append(text);
     }
 
-    function br(moduleDiv) {
-        moduleDiv.append('<br />');
+    function br(el) {
+        el.append('<br />');
     }
 
-    function preCode(moduleDiv, text) {
-        moduleDiv.append('<pre><code>' + text + '</code></pre>');
+    function pre(el, text) {
+        el.append('<pre>' + text + '</pre>');
+    }
+
+    function preCode(el, text) {
+        el.append('<pre><code>' + text + '</code></pre>');
     }
 
     // Functions toArray() and curry() will simplify calling the same function
