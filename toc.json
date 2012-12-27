@@ -1,0 +1,18 @@
+{
+"featured": [
+    { "srcFolder": "array_splice", "name": "Array.splice()" },
+    { "srcFolder": "js_markdown", "name": "JS Markdown" },
+    { "srcFolder": "eval_dynamic_func", "name": "Dynamic functions with eval()" },
+    { "srcFolder": "automatic_md_content", "name": "Automatic MD content" }
+],
+"all": {
+    "2012": {
+        "December": [
+            "array_splice",
+            "js_markdown",
+            "eval_dynamic_func",
+            "automatic_md_content"
+        ]
+    }
+}
+}

@@ -1,0 +1,10 @@
+{
+    "name": "Array.splice()",
+    "to_run": [
+        "module1",
+        "module2",
+        "module3",
+        "module4",
+        "module5"
+    ]
+}
