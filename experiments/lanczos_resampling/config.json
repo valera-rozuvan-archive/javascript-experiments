@@ -1,0 +1,8 @@
+{
+    "name": "Lanczos resampling",
+    "to_run": [
+        "md!module1.md",
+        "module2",
+        "module3"
+    ]
+}
