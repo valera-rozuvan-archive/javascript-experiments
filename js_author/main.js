@@ -27,14 +27,18 @@ requirejs.config({
     'baseUrl': 'experiments',
     'paths': {
         'jquery': '../js_vendor/jquery-1.8.3.min',
+        'jquery_ui': '../js_vendor/jquery-ui-1.9.2.custom.min',
         'text': '../js_vendor/text',
         'showdown': '../js_vendor/showdown.min',
+        'MathJax': '../js_vendor/mathjax/MathJax.js?config=AM_HTMLorMML-full',
+        'flot': '../js_vendor/flot/jquery.flot',
 
         'Output': '../js_author/output',
         'ModuleDiv': '../js_author/module_div',
         'RunModules': '../js_author/run_modules',
         'Controller': '../js_author/controller',
         'ContentManager': '../js_author/content_manager',
+        'pipeline': '../js_author/pipeline',
 
         'ExtMd': '../js_author/ext/md',
 
@@ -44,6 +48,18 @@ requirejs.config({
         'showdown': {
             'deps': [],
             'exports': 'Showdown'
+        },
+        'MathJax': {
+            'deps': [],
+            'exports': 'MathJax'
+        },
+        'flot': {
+            'deps': [],
+            'exports': 'jQuery.plot'
+        },
+        'jquery_ui': {
+            'deps': [],
+            'exports': 'jQuery.ui'
         }
     }
 });
