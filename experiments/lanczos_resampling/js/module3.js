@@ -60,12 +60,18 @@ define(
             'second lobe on each side, which are negative.'
         );
 
+        p(
+            'In the above, we can expand the sinc terms (for nonzero x in ' +
+            'the specified range): `text{sinc}(x) * text{sinc}(x / a) = ' +
+            '(a * sin(pi * x) * sin(pi * x / a)) / (pi^2 * x^2)`.'
+        );
+
         out(
             '<div ' +
                 'id="placeholder2" ' +
                 'style=" ' +
-                    'width: 500px; ' +
-                    'height: 500px; ' +
+                    'width: 400px; ' +
+                    'height: 400px; ' +
                     'margin-left: auto; ' +
                     'margin-right: auto; ' +
                 '" ' +
@@ -73,9 +79,17 @@ define(
         );
 
         p(
-            '<span style="text-decoration: underline;">Figure 2.</span> The ' +
-            'Lanczos kernel with the `a` parameter in the range `[0, 5]`. ' +
-            'Use the slider below to change `a`.'
+            '<span style="text-decoration: underline;">Figure 2.</span> ' +
+            'For any positive value of `a`, the Lanczos window and Lanczos ' +
+            'filter are continuous and differentiable even at the ends ' +
+            'where they go to zero. In the case of positive integer values ' +
+            'of `a`, both sinc functions go to zero at the edge, so the ' +
+            'edge of the Lanczos filter is zero to second order, which ' +
+            'means its derivative is also continuous, and it is ' +
+            'differentiable to second order. Thus integer values yield a ' +
+            'smoother cutoff, with no corner, which is why integers are ' +
+            'generally used. Use the slider below to change `a`, and see ' +
+            'how the Lanczos kernel changes.'
         );
 
         out(
