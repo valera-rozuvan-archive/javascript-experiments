@@ -153,16 +153,17 @@ define(
             if (Math.abs(i) < 1e-16)  {
                 d1.push([i, 1]);
             } else {
-                d1.push([i, Math.sin(i) / i]);
+                d1.push([i, Math.sin(Math.PI * i) / (Math.PI * i)]);
             }
         }
-        d1.push([5, Math.sin(5) / 5]);
+        d1.push([5, Math.sin(Math.PI * 5) / (Math.PI * 5)]);
 
         d2 = [];
         if (pipeline.a !== 0) {
             d2.push([
                 -pipeline.a,
-                Math.sin(-pipeline.a * pipeline.a) / (-pipeline.a * pipeline.a)
+                // Math.sin(Math.PI * (-pipeline.a / pipeline.a)) / (Math.PI * (-pipeline.a / pipeline.a))
+                Math.sin(-Math.PI) / (-Math.PI)
             ]);
         } else {
             d2.push([0, 1]);
@@ -177,14 +178,15 @@ define(
             } else {
                 d2.push([
                     i,
-                    Math.sin(i * pipeline.a) / (i * pipeline.a)
+                    Math.sin(Math.PI * (i / pipeline.a)) / (Math.PI * (i / pipeline.a))
                 ]);
             }
         }
         if (pipeline.a !== 0) {
             d2.push([
                 pipeline.a,
-                Math.sin(pipeline.a * pipeline.a) / (pipeline.a * pipeline.a)
+                // Math.sin(Math.PI * (pipeline.a / pipeline.a)) / (Math.PI * (pipeline.a / pipeline.a))
+                Math.sin(Math.PI) / Math.PI
             ]);
         }
 
