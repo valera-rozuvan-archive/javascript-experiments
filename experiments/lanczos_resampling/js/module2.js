@@ -49,8 +49,8 @@ define(
             '<div ' +
                 'id="placeholder1" ' +
                 'style=" ' +
-                    'width: 500px; ' +
-                    'height: 500px; ' +
+                    'width: 400px; ' +
+                    'height: 400px; ' +
                     'margin-left: auto; ' +
                     'margin-right: auto; ' +
                 '" ' +
