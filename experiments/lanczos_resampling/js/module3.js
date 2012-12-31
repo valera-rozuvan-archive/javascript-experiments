@@ -86,8 +86,20 @@ define(
                     'margin-left: auto; ' +
                     'margin-right: auto; ' +
                     'margin-bottom: 15px; ' +
+                    'margin-top: 30px; ' +
+                    'position: relative; ' +
                 '" ' +
             '>' +
+
+                '<div ' +
+                    'id="a_slider_value2" ' +
+                    'style=" ' +
+                        'width: 90px; ' +
+                        'position: absolute; ' +
+                        'top: -27px; ' +
+                        'left: 100px; ' +
+                    '" ' +
+                '></div> ' +
 
                 '<div ' +
                     'style=" ' +
@@ -96,7 +108,7 @@ define(
                         'float: left; ' +
                     '" ' +
                 '> ' +
-                    '`a_min = 0` ' +
+                    '`a_text{min} = 0` ' +
                 '</div> ' +
 
                 '<div ' +
@@ -116,13 +128,16 @@ define(
                         'float: left; ' +
                     '" ' +
                 '> ' +
-                    '`a_max = 5` ' +
+                    '`a_text{max} = 5` ' +
                 '</div> ' +
 
             '</div>'
         );
 
         moduleDiv.publish();
+
+        $('#a_slider_value2').css('left', (pipeline.a * 60 + 80) + 'px');
+        $('#a_slider_value2').html(pipeline.a.toFixed(1));
 
         $('#a_slider2').slider({
             'min': 0,
@@ -131,6 +146,8 @@ define(
             'step': 0.1,
             'slide': function(event, ui) {
                 pipeline.a = ui.value;
+                $('#a_slider_value2').css('left', (pipeline.a * 60 + 80) + 'px');
+                $('#a_slider_value2').html(pipeline.a.toFixed(1));
                 plot();
             }
         });
@@ -143,20 +160,24 @@ define(
         var i, d2;
 
         d2 = [];
-        if (pipeline.a !== 0) {
-            d2.push([
-                -pipeline.a,
-                (Math.sin(-pipeline.a) / (-pipeline.a)) * (Math.sin(-pipeline.a * pipeline.a) / (-pipeline.a * pipeline.a))
-            ]);
-        } else {
-            d2.push([0, 1]);
-        }
         for (i = -5; i <= 5; i += 0.05) {
-            if ((i < -pipeline.a) || (i > pipeline.a)) {
-                continue;
-            }
-
-            if (Math.abs(i * pipeline.a) < 1e-16)  {
+            if (i < -pipeline.a - 0.05) {
+                d2.push([i, 0]);
+            } else if (i < -pipeline.a) {
+                d2.push([i, 0]);
+                d2.push([
+                    i,
+                    (Math.sin(i) / (i)) * (Math.sin(i * pipeline.a) / (i * pipeline.a))
+                ]);
+            } else if ((i >= pipeline.a - 0.05) && (i < pipeline.a)) {
+                d2.push([
+                    i,
+                    (Math.sin(i) / (i)) * (Math.sin(i * pipeline.a) / (i * pipeline.a))
+                ]);
+                d2.push([i, 0]);
+            } else if (i >= pipeline.a) {
+                d2.push([i, 0]);
+            } else if (Math.abs(i * pipeline.a) < 1e-16)  {
                 d2.push([i, 1]);
             } else {
                 d2.push([
@@ -164,12 +185,6 @@ define(
                     (Math.sin(i) / (i)) * (Math.sin(i * pipeline.a) / (i * pipeline.a))
                 ]);
             }
-        }
-        if (pipeline.a !== 0) {
-            d2.push([
-                pipeline.a,
-                (Math.sin(pipeline.a) / (pipeline.a)) * (Math.sin(pipeline.a * pipeline.a) / (pipeline.a * pipeline.a))
-            ]);
         }
 
         flot(

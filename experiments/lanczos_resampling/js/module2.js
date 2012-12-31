@@ -73,8 +73,20 @@ define(
                     'margin-left: auto; ' +
                     'margin-right: auto; ' +
                     'margin-bottom: 15px; ' +
+                    'margin-top: 30px; ' +
+                    'position: relative; ' +
                 '" ' +
             '>' +
+
+                '<div ' +
+                    'id="a_slider_value" ' +
+                    'style=" ' +
+                        'width: 90px; ' +
+                        'position: absolute; ' +
+                        'top: -27px; ' +
+                        'left: 100px; ' +
+                    '" ' +
+                '></div> ' +
 
                 '<div ' +
                     'style=" ' +
@@ -83,7 +95,7 @@ define(
                         'float: left; ' +
                     '" ' +
                 '> ' +
-                    '`a_min = 0` ' +
+                    '`a_text{min} = 0` ' +
                 '</div> ' +
 
                 '<div ' +
@@ -103,7 +115,7 @@ define(
                         'float: left; ' +
                     '" ' +
                 '> ' +
-                    '`a_max = 5` ' +
+                    '`a_text{max} = 5` ' +
                 '</div> ' +
 
             '</div>'
@@ -112,6 +124,9 @@ define(
         moduleDiv.publish();
 
         pipeline.a = 2;
+        $('#a_slider_value').css('left', (pipeline.a * 60 + 80) + 'px');
+        $('#a_slider_value').html(pipeline.a.toFixed(1));
+
         $('#a_slider').slider({
             'min': 0,
             'max': 5,
@@ -119,9 +134,12 @@ define(
             'step': 0.1,
             'slide': function(event, ui) {
                 pipeline.a = ui.value;
+                $('#a_slider_value').css('left', (pipeline.a * 60 + 80) + 'px');
+                $('#a_slider_value').html(pipeline.a.toFixed(1));
                 plot();
             }
         });
+
         plot();
 
         MathJax.Hub.Typeset();
