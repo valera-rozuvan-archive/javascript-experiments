@@ -167,12 +167,12 @@ define(
                 d2.push([i, 0]);
                 d2.push([
                     i,
-                    (Math.sin(i) / (i)) * (Math.sin(i * pipeline.a) / (i * pipeline.a))
+                    (Math.sin(Math.PI * i) / (Math.PI * i)) * (Math.sin(Math.PI * (i / pipeline.a)) / (Math.PI * (i / pipeline.a)))
                 ]);
             } else if ((i >= pipeline.a - 0.05) && (i < pipeline.a)) {
                 d2.push([
                     i,
-                    (Math.sin(i) / (i)) * (Math.sin(i * pipeline.a) / (i * pipeline.a))
+                    (Math.sin(Math.PI * i) / (Math.PI * i)) * (Math.sin(Math.PI * (i / pipeline.a)) / (Math.PI * (i / pipeline.a)))
                 ]);
                 d2.push([i, 0]);
             } else if (i >= pipeline.a) {
@@ -182,7 +182,7 @@ define(
             } else {
                 d2.push([
                     i,
-                    (Math.sin(i) / (i)) * (Math.sin(i * pipeline.a) / (i * pipeline.a))
+                    (Math.sin(Math.PI * i) / (Math.PI * i)) * (Math.sin(Math.PI * (i / pipeline.a)) / (Math.PI * (i / pipeline.a)))
                 ]);
             }
         }
