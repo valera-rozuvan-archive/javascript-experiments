@@ -23,10 +23,6 @@
  */
 
 define(['logme', 'jquery'], function (logme, $) {
-    var window_copy;
-
-    window_copy = window;
-
     return function () {
         var  p, el;
 
@@ -65,7 +61,6 @@ define(['logme', 'jquery'], function (logme, $) {
     }
 
     function performTestLogmeCalls() {
-        /*
         logme($);
         logme($.kjsdfhkfash);
         (function (c1) {
@@ -80,18 +75,14 @@ define(['logme', 'jquery'], function (logme, $) {
                 c1 += 1;
             }
         }(0));
-        */
-
-        // logme($);
-        // logme($.kjsdfhkfash);
-        // logme(43.2);
+        logme($);
+        logme($.kjsdfhkfash);
+        logme(43.2);
         logme(null);
-        // logme({'hello': 'world'});
-        logme(window_copy);
-        // logme('"Hello, world!"', '\'Hello, world!\'');
-        // logme($(document));
-
-        /*
+        logme({'hello': 'world'});
+        logme(window);
+        logme('"Hello, world!"', '\'Hello, world!\'');
+        logme($(document));
         (function (c1) {
             while (c1 < 50) {
                 logme('Attaching a click handler.');
@@ -108,6 +99,5 @@ define(['logme', 'jquery'], function (logme, $) {
             '1234567890123456789012345678901234567890123456789012345678' +
             '9012345678901234567890123456789012345678901234567890'
         );
-        */
     }
 });
