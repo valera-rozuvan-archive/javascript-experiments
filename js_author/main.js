@@ -27,15 +27,16 @@
 requirejs.config({
     'baseUrl': 'experiments',
     'paths': {
-        'hotfix': '../js_author/hotfix',
         'jquery': '../js_vendor/jquery-1.8.3.min',
         'jquery_ui': '../js_vendor/jquery-ui-1.9.2.custom.min',
-        'jquery_block_ui': '../js_vendor/jquery.blockUI',
-        'text': '../js_vendor/text',
+        'jquery_block_ui': '../js_vendor/jquery.blockUI.min',
+        'text': '../js_vendor/text.min',
         'showdown': '../js_vendor/showdown.min',
         'MathJax': '../js_vendor/mathjax/MathJax.js?config=AM_HTMLorMML-full',
         'flot': '../js_vendor/flot/jquery.flot',
 
+        'logme': '../js_author/logme',
+        'hotfix': '../js_author/hotfix',
         'Output': '../js_author/output',
         'ModuleDiv': '../js_author/module_div',
         'RunModules': '../js_author/run_modules',
@@ -45,8 +46,6 @@ requirejs.config({
         'showHideGitHubRibbon': '../js_author/show_hide_gh_ribbon',
 
         'ExtMd': '../js_author/ext/md',
-
-        'logme': '../js_author/logme'
     },
     'shim': {
         'showdown': {

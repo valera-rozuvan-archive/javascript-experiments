@@ -63,7 +63,9 @@ define(['jquery'], function ($) {
             clickedTagName = $(event.target)[0].tagName.toLowerCase();
 
             if ((clickedTagName === 'html') || (clickedTagName === 'body')) {
-                showLogmeOutput();
+                if (debugOverlayIsOn === false) {
+                    showLogmeOutput();
+                }
             }
         }
     });
@@ -80,12 +82,16 @@ define(['jquery'], function ($) {
         var c1, windowDim, messageDim, messagesEl, closeButtonEl, escapedText,
             findReplace, item, currentLength;
 
+        if (debugOverlayIsOn === true) {
+            return;
+        }
+        debugOverlayIsOn = true;
+
         if (jQueryUiLoaded !== true) {
+            debugOverlayIsOn = false;
             setTimeout(showLogmeOutput, 50);
             return;
         }
-
-        debugOverlayIsOn = true;
 
         findReplace = [
             [/&/g, '&amp;'],
@@ -301,8 +307,6 @@ define(['jquery'], function ($) {
             setTimeout(function () {
                 showLogmeOutput();
             }, 50);
-
-            debugOverlayIsOn = true;
         }
     } // End-of: function logme
 
