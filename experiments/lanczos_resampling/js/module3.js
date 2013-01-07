@@ -2,7 +2,8 @@
  * module3.js - Part of "Lanczos resampling" JavaScript experiment.
  *
  *
- * Copyright 2012 Valera Rozuvan
+ * Copyright 2012-2013 Valera Rozuvan
+ * http://javascript-experiments.net/
  *
  *
  * This file is part of javascript-experiments.
@@ -24,17 +25,16 @@
 define(
     ['ModuleDiv', 'pipeline', 'MathJax', 'jquery', 'jquery_ui', 'flot'],
     function (ModuleDiv, pipeline, MathJax, $, jui, flot) {
-    var moduleDiv, p, out;
-
-    moduleDiv = ModuleDiv(
-        'Theory: part 2',
-        'experiments/lanczos_resampling/js/module3.js'
-    );
-
-    p = moduleDiv.p;
-    out = moduleDiv.out;
 
     return function () {
+        var moduleDiv, p, out;
+
+        moduleDiv = ModuleDiv(
+            'Theory: part 2',
+            'experiments/lanczos_resampling/js/module3.js'
+        );
+        p = moduleDiv.p;
+        out = moduleDiv.out;
         moduleDiv.prepare();
 
         p(

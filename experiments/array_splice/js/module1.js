@@ -2,7 +2,8 @@
  * module1.js - Part of "Array.splice()" JavaScript experiment.
  *
  *
- * Copyright 2012 Valera Rozuvan
+ * Copyright 2012-2013 Valera Rozuvan
+ * http://javascript-experiments.net/
  *
  *
  * This file is part of javascript-experiments.
@@ -22,18 +23,14 @@
  */
 
 define(['ModuleDiv'], function (ModuleDiv) {
-    var moduleDiv, p;
-
-    moduleDiv = ModuleDiv(
-        'Object references',
-        'experiments/array_splice/js/module1.js'
-    );
-
-    p = moduleDiv.p;
-
     return function () {
-        var myObj, copyOfMyObj;
+        var moduleDiv, p, myObj, copyOfMyObj;
 
+        moduleDiv = ModuleDiv(
+            'Object references',
+            'experiments/array_splice/js/module1.js'
+        );
+        p = moduleDiv.p;
         moduleDiv.prepare();
 
         myObj = {

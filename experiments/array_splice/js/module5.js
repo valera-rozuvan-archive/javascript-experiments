@@ -2,7 +2,8 @@
  * module5.js - Part of "Array.splice()" JavaScript experiment.
  *
  *
- * Copyright 2012 Valera Rozuvan
+ * Copyright 2012-2013 Valera Rozuvan
+ * http://javascript-experiments.net/
  *
  *
  * This file is part of javascript-experiments.
@@ -22,18 +23,14 @@
  */
 
 define(['ModuleDiv'], function (ModuleDiv) {
-    var moduleDiv, p;
-
-    moduleDiv = ModuleDiv(
-        'Array.slice() method. Part 4.',
-        'experiments/array_splice/js/module5.js'
-    );
-
-    p = moduleDiv.p;
-
     return function () {
-        var myArray, copyOfMyArray, obj1, obj2, obj3;
+        var moduleDiv, p, myArray, copyOfMyArray, obj1, obj2, obj3;
 
+        moduleDiv = ModuleDiv(
+            'Array.slice() method. Part 4.',
+            'experiments/array_splice/js/module5.js'
+        );
+        p = moduleDiv.p;
         moduleDiv.prepare();
 
         obj1 = {'x': 100};

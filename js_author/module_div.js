@@ -2,7 +2,8 @@
  * module_div.js - Create a DIV container for a module.
  *
  *
- * Copyright 2012 Valera Rozuvan
+ * Copyright 2012-2013 Valera Rozuvan
+ * http://javascript-experiments.net/
  *
  *
  * This file is part of javascript-experiments.
@@ -62,30 +63,30 @@ define(['jquery', 'Controller', 'Output'], function ($, Controller, Output) {
         el.appendTo(moduleDiv.captionEl);
 
         return moduleDiv;
+    }
 
-        function addCaption() {
-            this.captionEl.appendTo(this.el);
-        }
+    function addCaption() {
+        this.captionEl.appendTo(this.el);
+    }
 
-        function appendToPage() {
-            this.el.appendTo('.page');
-        }
+    function appendToPage() {
+        this.el.appendTo('.page');
+    }
 
-        function appendToSelector(divSelector) {
-            this.el.appendTo(divSelector);
-        }
+    function appendToSelector(divSelector) {
+        this.el.appendTo(divSelector);
+    }
 
-        function prepare() {
-            this.el.hide();
-            this.el.empty();
-            this.addCaption();
-        }
+    function prepare() {
+        this.el.hide();
+        this.el.empty();
+        this.addCaption();
+    }
 
-        function publish() {
-            this.appendToPage();
-            this.el.slideDown(500);
+    function publish() {
+        this.appendToPage();
+        this.el.slideDown(500);
 
-            Controller.attachClickEvents();
-        }
+        Controller.attachClickEvents();
     }
 });
