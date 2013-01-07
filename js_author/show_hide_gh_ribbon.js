@@ -23,6 +23,12 @@
  */
 
 define(['jquery'], function ($) {
+    if ($.browser.msie === true) {
+        $(window).on('resize', showHideRibbonIE);
+
+        return showHideRibbonIE;
+    }
+
     $(window).on('resize', showHideRibbon);
 
     return showHideRibbon;
@@ -44,6 +50,14 @@ define(['jquery'], function ($) {
                 },
                 750
             );
+        }
+    }
+
+    function showHideRibbonIE() {
+        if ($(window).width() <= 1000) {
+            $('.forkme_github').hide();
+        } else {
+            $('.forkme_github').show();
         }
     }
 });
