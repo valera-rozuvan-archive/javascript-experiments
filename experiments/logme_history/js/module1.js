@@ -80,11 +80,11 @@ define(['logme', 'jquery'], function (logme, $) {
 
         logme($);
         logme($.kjsdfhkfash);
-        logme(43.2);
+        // logme(43.2);
         // logme(null);
-        logme({'hello': 'world'});
-        logme(window);
-        logme('"Hello, world!"', '\'Hello, world!\'');
+        // logme({'hello': 'world'});
+        // logme(window);
+        // logme('"Hello, world!"', '\'Hello, world!\'');
         logme($(document));
 
         /*
@@ -100,10 +100,10 @@ define(['logme', 'jquery'], function (logme, $) {
                 c1 += 1;
             }
         }(0));
-        */
         logme(
             '1234567890123456789012345678901234567890123456789012345678' +
             '9012345678901234567890123456789012345678901234567890'
         );
+        */
     }
 });
