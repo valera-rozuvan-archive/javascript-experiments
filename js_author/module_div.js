@@ -83,10 +83,13 @@ define(['jquery', 'Controller', 'Output'], function ($, Controller, Output) {
         this.addCaption();
     }
 
-    function publish() {
-        this.appendToPage();
+    function publish(divSelector) {
+        if (typeof divSelector === 'string') {
+            this.appendToSelector(divSelector);
+        } else {
+            this.appendToPage();
+        }
         this.el.slideDown(500);
-
         Controller.attachClickEvents();
     }
 });

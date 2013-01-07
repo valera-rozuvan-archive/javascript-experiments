@@ -23,8 +23,8 @@
  */
 
 define(
-    ['ModuleDiv', 'pipeline', 'MathJax', 'jquery', 'jquery_ui', 'flot'],
-    function (ModuleDiv, pipeline, MathJax, $, jui, flot) {
+    ['pipeline', 'MathJax', 'jquery', 'jquery_ui', 'flot'],
+    function (pipeline, MathJax, $, jui, flot) {
 
     return function () {
         var p, out;

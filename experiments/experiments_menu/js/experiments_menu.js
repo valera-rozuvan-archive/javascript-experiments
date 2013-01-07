@@ -22,19 +22,16 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-define(
-    ['ModuleDiv', 'Controller', 'ContentManager', 'jquery'],
-    function (ModuleDiv, Controller, ContentManager, $) {
+define(['ContentManager', 'jquery'], function (ContentManager, $) {
+    var oldScrollLeft, oldWindowWidth;
+
+    oldScrollLeft = -1;
+    oldWindowWidth = -1;
 
     return function () {
-        var moduleDiv, out, featured, c1, todaysDate, year;
+        var out, featured, c1, todaysDate, year;
 
-        moduleDiv = ModuleDiv(
-            'Featured JS experiments',
-            'experiments/experiments_menu/js/experiments_menu.js'
-        );
-        out = moduleDiv.out;
-        moduleDiv.addCaption();
+        out = this.moduleDiv.out;
 
         out(
             '<div style="text-align: right;">' +
@@ -68,9 +65,7 @@ define(
             '</div>'
         );
 
-        moduleDiv.appendToSelector('.toc');
-
-        Controller.attachClickEvents();
+        this.moduleDiv.publish('.toc');
 
         // We will make sure that the GitHub ribbon always stays at the right
         // side of the screen, even when the window is resized, or when it is
@@ -92,9 +87,20 @@ define(
     }
 
     function repositionRibbon() {
+        var currentScrollLeft, currentWindowWidth;
+
+        currentScrollLeft = $(window).scrollLeft();
+        currentWindowWidth = $(window).width();
+
+        if (oldScrollLeft !== currentScrollLeft) {
+            oldScrollLeft = currentScrollLeft;
+        } else if (oldWindowWidth !== currentWindowWidth) {
+            oldWindowWidth = currentWindowWidth;
+        }
+
         $('.forkme_github').css(
             'left',
-            $(window).width() + $(window).scrollLeft() - 149
+            currentWindowWidth + currentScrollLeft - 149
         );
     }
 });

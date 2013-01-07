@@ -22,16 +22,11 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-define(['ModuleDiv'], function (ModuleDiv) {
+define([], function () {
     return function () {
-        var moduleDiv, p, myObj, copyOfMyObj;
+        var p, myObj, copyOfMyObj;
 
-        moduleDiv = ModuleDiv(
-            'Object references',
-            'experiments/array_splice/js/module1.js'
-        );
-        p = moduleDiv.p;
-        moduleDiv.prepare();
+        p = this.moduleDiv.p;
 
         myObj = {
             'property1': {
@@ -56,6 +51,6 @@ define(['ModuleDiv'], function (ModuleDiv) {
         p('typeof myObj.property1 = ' + (typeof myObj.property1) + '.');
         p('copyOfMyObj.property1.x = ' + copyOfMyObj.property1.x + '.');
 
-        moduleDiv.publish();
+        this.moduleDiv.publish();
     };
 });

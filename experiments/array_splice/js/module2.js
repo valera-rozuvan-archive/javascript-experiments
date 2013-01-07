@@ -22,16 +22,11 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-define(['ModuleDiv'], function (ModuleDiv) {
+define([], function () {
     return function () {
-        var moduleDiv, p, myArray, copyOfMyArray;
+        var p, myArray, copyOfMyArray;
 
-        moduleDiv = ModuleDiv(
-            'Array.slice() method.',
-            'experiments/array_splice/js/module2.js'
-        );
-        p = moduleDiv.p;
-        moduleDiv.prepare();
+        p = this.moduleDiv.p;
 
         myArray = [
             {
@@ -62,6 +57,6 @@ define(['ModuleDiv'], function (ModuleDiv) {
         p('myArray = ' + JSON.stringify(myArray) + '.');
         p('copyOfMyArray = ' + JSON.stringify(copyOfMyArray) + '.');
 
-        moduleDiv.publish();
+        this.moduleDiv.publish();
     };
 });
