@@ -61,6 +61,7 @@ define(['logme', 'jquery'], function (logme, $) {
     }
 
     function performTestLogmeCalls() {
+        /*
         logme($);
         logme($.kjsdfhkfash);
         (function (c1) {
@@ -75,14 +76,18 @@ define(['logme', 'jquery'], function (logme, $) {
                 c1 += 1;
             }
         }(0));
-        /*logme($);
+        */
+
+        logme($);
         logme($.kjsdfhkfash);
         logme(43.2);
-        logme(null);
+        // logme(null);
         logme({'hello': 'world'});
         logme(window);
         logme('"Hello, world!"', '\'Hello, world!\'');
         logme($(document));
+
+        /*
         (function (c1) {
             while (c1 < 50) {
                 logme('Attaching a click handler.');
@@ -95,9 +100,10 @@ define(['logme', 'jquery'], function (logme, $) {
                 c1 += 1;
             }
         }(0));
+        */
         logme(
             '1234567890123456789012345678901234567890123456789012345678' +
             '9012345678901234567890123456789012345678901234567890'
-        );*/
+        );
     }
 });
