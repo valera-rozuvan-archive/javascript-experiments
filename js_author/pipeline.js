@@ -22,7 +22,7 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-define(['logme'], function (logme) {
+define([], function () {
     // If a module requests us, it can attach some properties to our object.
     // Or, it can read some other property made available by another module.
     //

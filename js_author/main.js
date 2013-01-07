@@ -70,8 +70,8 @@ requirejs.config({
 
 // Main point of entrance into JavaScript code.
 requirejs(
-    ['showHideGitHubRibbon', 'hotfix', 'jquery', 'RunModules', 'logme'],
-    function (showHideGitHubRibbon, hotFix, $, RunModules, logme) {
+    ['showHideGitHubRibbon', 'hotfix', 'jquery', 'RunModules'],
+    function (showHideGitHubRibbon, hotFix, $, RunModules) {
 
     // Patch some old browsers for missing JS functionality.
     hotFix();

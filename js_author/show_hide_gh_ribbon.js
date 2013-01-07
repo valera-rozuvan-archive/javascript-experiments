@@ -34,23 +34,25 @@ define(['jquery'], function ($) {
     return showHideRibbon;
 
     function showHideRibbon() {
-        if ($(window).width() <= 1000) {
-            $('.forkme_github').hide(
-                'slide',
-                {
-                    'direction': 'left'
-                },
-                750
-            );
-        } else {
-            $('.forkme_github').show(
-                'slide',
-                {
-                    'direction': 'left'
-                },
-                750
-            );
-        }
+        require(['jquery_ui'], function (jqueryUi) {
+            if ($(window).width() <= 1000) {
+                $('.forkme_github').hide(
+                    'slide',
+                    {
+                        'direction': 'left'
+                    },
+                    750
+                );
+            } else {
+                $('.forkme_github').show(
+                    'slide',
+                    {
+                        'direction': 'left'
+                    },
+                    750
+                );
+            }
+        });
     }
 
     function showHideRibbonIE() {

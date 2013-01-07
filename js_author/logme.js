@@ -22,8 +22,10 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-define(['jquery', 'jquery_ui', 'jquery_block_ui'], function ($, jqueryUi, blockUI) {
-    var debugMode, _logmeArchive, debugMessageEl, debugOverlayIsOn;
+define(['jquery'], function ($) {
+
+    var debugMode, _logmeArchive, debugMessageEl, debugOverlayIsOn,
+        jQueryUiLoaded;
 
     // debugMode can be one of the following:
     //
@@ -35,6 +37,13 @@ define(['jquery', 'jquery_ui', 'jquery_block_ui'], function ($, jqueryUi, blockU
     // anything about it. That's why use logme() - it will allow to turn off
     // the output of debug information with a single change to a variable.
     debugMode = true;
+
+    jQueryUiLoaded = false;
+    require(['jquery_ui'], function (jqueryUi) {
+        require(['jquery_block_ui'], function (blockUI) {
+            jQueryUiLoaded = true;
+        });
+    });
 
     // Provide methods to enable/disable logging. I.e. setting the 'debugMode'
     // parameter to 'true' or 'false'.
@@ -70,6 +79,11 @@ define(['jquery', 'jquery_ui', 'jquery_block_ui'], function ($, jqueryUi, blockU
     function showLogmeOutput() {
         var c1, windowDim, messageDim, messagesEl, closeButtonEl, escapedText,
             findReplace, item, currentLength;
+
+        if (jQueryUiLoaded !== true) {
+            setTimeout(showLogmeOutput, 50);
+            return;
+        }
 
         debugOverlayIsOn = true;
 
