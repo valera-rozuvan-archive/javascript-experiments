@@ -1,6 +1,3 @@
-<!--- CAPTION[Introduction] -->
-<!--- LINK[experiments/lanczos_resampling/md/module1.md] -->
-
 Lanczos resampling is an interpolation method used to compute new values for
 sampled data. It is often used in multivariate interpolation, for example for
 image scaling (to resize digital images), but can be used for any other digital

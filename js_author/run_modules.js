@@ -31,7 +31,7 @@ define(['jquery', 'logme'], function ($, logme) {
         // It will contain the list of modules available for that experiment,
         // (along with the order that they should be displayed in).
         require(['text!' + moduleDir + '/config.json'], function (configJson) {
-            var config, c1, moduleNames, matches;
+            var config, c1, moduleNames, moduleConfig, moduleConfigObj, matches;
 
             // configJson is the contents of the 'config.json' file, as
             // retrieved by RequireJS. It should be a string.
@@ -76,6 +76,13 @@ define(['jquery', 'logme'], function ($, logme) {
             }
 
             moduleNames = [];
+            moduleConfig = [];
+
+            moduleNames.push('ModuleDiv');
+            moduleConfig.push(null);
+
+            moduleNames.push('ExtMd');
+            moduleConfig.push(null);
 
             for (c1 = 0; c1 < config.to_run.length; c1 += 1) {
 
@@ -83,16 +90,45 @@ define(['jquery', 'logme'], function ($, logme) {
                 // path to the module. All modules JS files are to be placed
                 // under the 'js/' directory in the experiment folder.
                 if (typeof config.to_run[c1] === 'string') {
-
-                    matches = config.to_run[c1].match(/^md!(.*)$/);
-                    if (matches !== null) {
-                        moduleNames.push('text!' + moduleDir + '/md/' + matches[1]);
-                        moduleNames.push('ExtMd');
-                    } else {
-                        moduleNames.push(moduleDir + '/js/' + config.to_run[c1]);
-                    }
+                    parseModuleSourceStr(config.to_run[c1]);
+                    moduleConfig.push(null);
                 }
 
+                // If this is an object, then we can also get configuration
+                // options from it.
+                else if ($.isPlainObject(config.to_run[c1]) === true) {
+                    if (typeof config.to_run[c1].source !== 'string') {
+                        logme('ERROR: Missing "source" property!');
+
+                        return;
+                    }
+                    parseModuleSourceStr(config.to_run[c1].source);
+
+                    moduleConfigObj = {
+                        'easyMode': false,
+                        'description': '',
+                        'githubLink': ''
+                    };
+
+                    if (
+                        (typeof config.to_run[c1].easyMode === 'string') &&
+                            (config.to_run[c1].easyMode.toLowerCase() === 'true')
+                    ) {
+                        moduleConfigObj.easyMode = true;
+                    }
+
+                    if (typeof config.to_run[c1].description === 'string') {
+                        moduleConfigObj.description = config.to_run[c1].description;
+                    }
+
+                    if (typeof config.to_run[c1].githubLink === 'string') {
+                        moduleConfigObj.githubLink = config.to_run[c1].githubLink;
+                    }
+
+                    moduleConfig.push(moduleConfigObj);
+
+                    moduleConfigObj = null;
+                }
             }
 
             if (typeof config.name === 'string') {
@@ -106,23 +142,66 @@ define(['jquery', 'logme'], function ($, logme) {
             // experiment. The anonymous callback will execute once all of them
             // have been loaded.
             require(moduleNames, function () {
-                var i;
+                var i, moduleObj, ModuleDiv, ExtMd;
 
                 $('.page').empty();
 
-                // Call the module functions sequentially.
-                for (i = 0; i < arguments.length; i++) {
-                    if (typeof arguments[i] === 'string') {
-                        arguments[i + 1](arguments[i]);
-                        i += 1;
-                    } else {
-                        arguments[i]();
+                ModuleDiv = arguments[0];
+                ExtMd = arguments[1];
+
+                // Call the module functions sequentially. Remember that
+                // arguments[0] is ModuleDiv() function, and arguments[1] is
+                // ExtMd() function.
+                for (i = 2; i < arguments.length; i++) {
+
+                    if ((moduleConfig[i] !== null) && (moduleConfig[i].easyMode === true)) {
+                        moduleObj = {
+                            'moduleDiv': ModuleDiv(
+                                moduleConfig[i].description,
+                                moduleConfig[i].githubLink
+                            )
+                        };
+                        moduleObj.moduleDiv.prepare();
+
+                        // If an argument is a string - then it was passed to us by
+                        // the RequireJS 'text' plugin. We will pass it to the
+                        // extension function ExtMd().
+                        if (typeof arguments[i] === 'string') {
+                            ExtMd.call(moduleObj, arguments[i]);
+                        }
+
+                        // In all other cases, the argument is a module function.
+                        // Execute it.
+                        else {
+                            arguments[i].call(moduleObj);
+                        }
+
+                        moduleObj = null;
                     }
+
+                    // The same as the first case, only we simply call the
+                    // functions, without settings a specific
+                    else {
+                        if (typeof arguments[i] === 'string') {
+                            ExtMd(arguments[i]);
+                        } else {
+                            arguments[i]();
+                        }
+                    }
+
                 }
+            }); // End-of: require(moduleNames, function () {
 
-            });
+            return;
 
-        });
-
-    }
-});
+            function parseModuleSourceStr(sourceStr) {
+                matches = sourceStr.match(/^md!(.*)$/);
+                if (matches !== null) {
+                    moduleNames.push('text!' + moduleDir + '/md/' + matches[1]);
+                } else {
+                    moduleNames.push(moduleDir + '/js/' + sourceStr);
+                }
+            }
+        }); // End-of: require(['text!' + moduleDir + '/config.json'], function (configJson) {
+    } // End-of: function RunModules(moduleDir) {
+}); // End-of: define(['jquery', 'logme'], function ($, logme) {

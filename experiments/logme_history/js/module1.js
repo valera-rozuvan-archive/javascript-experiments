@@ -22,16 +22,12 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-define(['ModuleDiv', 'logme', 'jquery'], function (ModuleDiv, logme, $) {
+define(['logme', 'jquery'], function (logme, $) {
     return function () {
-        var  moduleDiv, p, el;
+        var  p, el;
 
-        moduleDiv = ModuleDiv(
-            'Example',
-            'experiments/logme_history/js/module1.js'
-        );
-        p = moduleDiv.p;
-        moduleDiv.prepare();
+        p = this.moduleDiv.p;
+        this.moduleDiv.prepare();
 
         p('Will trigger logme() calls...');
 
@@ -42,16 +38,29 @@ define(['ModuleDiv', 'logme', 'jquery'], function (ModuleDiv, logme, $) {
                 '</span>' +
             '</div>'
         );
-        el.appendTo(moduleDiv.el);
-        el.children('span').click(triggerLogmeCall);
+        el.appendTo(this.moduleDiv.el);
+        el.children('span').on('click', triggerLogmeCall);
 
         p(
             'NOTE: As an added bonus, you can also drag the "logme() ' +
             'history" dialog by the title bar.'
         );
 
-        moduleDiv.publish();
+        this.moduleDiv.publish();
 
+        performTestLogmeCalls();
+    }; // End-of: return function ()
+
+    function triggerLogmeCall(event) {
+        logme(
+            'Another logme() call triggered. Random number is "' +
+            Math.random(100) + '".'
+        );
+
+        event.preventDefault();
+    }
+
+    function performTestLogmeCalls() {
         logme($);
         logme($.kjsdfhkfash);
         (function (c1) {
@@ -90,14 +99,5 @@ define(['ModuleDiv', 'logme', 'jquery'], function (ModuleDiv, logme, $) {
             '1234567890123456789012345678901234567890123456789012345678' +
             '9012345678901234567890123456789012345678901234567890'
         );
-    }; // End-of: return function ()
-
-    function triggerLogmeCall(event) {
-        logme(
-            'Another logme() call triggered. Random number is "' +
-            Math.random(100) + '".'
-        );
-
-        event.preventDefault();
     }
 });

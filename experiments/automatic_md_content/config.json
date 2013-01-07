@@ -1,6 +1,11 @@
 {
     "name": "Automatic MD content",
     "to_run": [
-        "md!test.md"
+        {
+            "source": "md!test.md",
+            "description": "Automatic rendering of MD file",
+            "githubLink": "experiments/automatic_md_content/md/test.md",
+            "easyMode": "true"
+        }
     ]
 }

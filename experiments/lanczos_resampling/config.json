@@ -1,8 +1,23 @@
 {
     "name": "Lanczos resampling",
     "to_run": [
-        "md!module1.md",
-        "module2",
-        "module3"
+        {
+            "source": "md!module1.md",
+            "description": "Introduction",
+            "githubLink": "experiments/lanczos_resampling/md/module1.md",
+            "easyMode": "true"
+        },
+        {
+            "source": "module2",
+            "description": "Theory: part 1",
+            "githubLink": "experiments/lanczos_resampling/js/module2.js",
+            "easyMode": "true"
+        },
+        {
+            "source": "module3",
+            "description": "Theory: part 2",
+            "githubLink": "experiments/lanczos_resampling/js/module3.js",
+            "easyMode": "true"
+        }
     ]
 }

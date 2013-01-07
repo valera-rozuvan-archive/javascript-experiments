@@ -1,6 +1,3 @@
-<!--- CAPTION[Description] -->
-<!--- LINK[experiments/logme_history/md/description.md] -->
-
 As you probably know, there exists a mighty function in the JavaScript world
 
     console.log();

@@ -27,15 +27,10 @@ define(
     function (ModuleDiv, pipeline, MathJax, $, jui, flot) {
 
     return function () {
-        var moduleDiv, p, out;
+        var p, out;
 
-        moduleDiv = ModuleDiv(
-            'Theory: part 2',
-            'experiments/lanczos_resampling/js/module3.js'
-        );
-        p = moduleDiv.p;
-        out = moduleDiv.out;
-        moduleDiv.prepare();
+        p = this.moduleDiv.p;
+        out = this.moduleDiv.out;
 
         p(
             'The Lanczos filter, on its interval, is a product of two ' +
@@ -148,7 +143,7 @@ define(
             '</div>'
         );
 
-        moduleDiv.publish();
+        this.moduleDiv.publish();
 
         $('#a_slider_value2').css('left', (pipeline.a * 60 + 80) + 'px');
         $('#a_slider_value2').html(pipeline.a.toFixed(1));

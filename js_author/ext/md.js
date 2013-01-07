@@ -22,43 +22,15 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-define(['ModuleDiv', 'showdown'], function (ModuleDiv, Showdown) {
+define(['showdown'], function (Showdown) {
     return ExtMd;
 
     function ExtMd(mdText) {
-        var moduleDiv, converter, caption, link;
-
-        caption = '';
-        link = '';
-
-        // Remove any leading whitespace and EOL characters.
-        mdText = mdText.replace(/^[\s\n]+/, '');
-
-        (function GetCaption(matches) {
-            if ((matches !== null) && (typeof matches[1] === 'string')) {
-                caption = matches[1];
-                mdText = mdText.replace(matches[0], '');
-                mdText = mdText.replace(/^[\s\n]+/, '');
-            }
-        }(mdText.match(/^<!--- CAPTION\[(.*)\] -->/)));
-
-        (function GetLink(matches) {
-            if ((matches !== null) && (typeof matches[1] === 'string')) {
-                link = matches[1];
-                mdText = mdText.replace(matches[0], '');
-                mdText = mdText.replace(/^[\s\n]+/, '');
-            }
-        }(mdText.match(/^<!--- LINK\[(.*)\] -->/)));
-
-        // Remove any trailing whitespace and EOL characters.
-        mdText = mdText.replace(/[\s\n]+$/, '');
-
-        moduleDiv = ModuleDiv(caption, link, true);
-        moduleDiv.prepare();
+        var converter;
 
         converter = new Showdown.converter();
-        moduleDiv.out(converter.makeHtml(mdText));
+        this.moduleDiv.out(converter.makeHtml(mdText));
 
-        moduleDiv.publish();
+        this.moduleDiv.publish();
     }
 });

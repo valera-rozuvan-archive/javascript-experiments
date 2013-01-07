@@ -1,7 +1,17 @@
 {
     "name": "logme() history example",
     "to_run": [
-        "md!description.md",
-        "module1"
+        {
+            "source": "md!description.md",
+            "description": "Description",
+            "githubLink": "experiments/logme_history/md/description.md",
+            "easyMode": "true"
+        },
+        {
+            "source": "module1",
+            "description": "Example",
+            "githubLink": "experiments/logme_history/js/module1.js",
+            "easyMode": "true"
+        }
     ]
 }

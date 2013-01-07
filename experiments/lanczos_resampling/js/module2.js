@@ -23,19 +23,14 @@
  */
 
 define(
-    ['ModuleDiv', 'pipeline', 'MathJax', 'jquery', 'jquery_ui', 'flot'],
-    function (ModuleDiv, pipeline, MathJax, $, jui, flot) {
+    ['pipeline', 'MathJax', 'jquery', 'jquery_ui', 'flot'],
+    function (pipeline, MathJax, $, jui, flot) {
 
     return function () {
-        var  moduleDiv, p, out;
+        var p, out;
 
-        moduleDiv = ModuleDiv(
-            'Theory: part 1',
-            'experiments/lanczos_resampling/js/module2.js'
-        );
-        p = moduleDiv.p;
-        out = moduleDiv.out;
-        moduleDiv.prepare();
+        p = this.moduleDiv.p;
+        out = this.moduleDiv.out;
 
         p(
             'The Lanczos filter impulse response is the normalized sinc ' +
@@ -121,7 +116,7 @@ define(
             '</div>'
         );
 
-        moduleDiv.publish();
+        this.moduleDiv.publish();
 
         pipeline.a = 2;
         $('#a_slider_value').css('left', (pipeline.a * 60 + 80) + 'px');
