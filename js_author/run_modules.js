@@ -108,6 +108,8 @@ define(['jquery', 'logme'], function ($, logme) {
             require(moduleNames, function () {
                 var i;
 
+                $('.page').empty();
+
                 // Call the module functions sequentially.
                 for (i = 0; i < arguments.length; i++) {
                     if (typeof arguments[i] === 'string') {

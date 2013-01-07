@@ -23,7 +23,6 @@
  */
 
 define(['jquery', 'RunModules'], function ($, RunModules) {
-
     return {
         'switchExperiment': switchExperiment,
         'attachClickEvents': attachClickEvents
@@ -45,7 +44,7 @@ define(['jquery', 'RunModules'], function ($, RunModules) {
         divsToProcess = $('.page').children('.module');
 
         if (divsToProcess.length === 0) {
-            showSelectedExperiment();
+            showSelectedExperiment(srcFolder);
         } else {
             numDivsLeft = divsToProcess.length;
 
@@ -54,20 +53,20 @@ define(['jquery', 'RunModules'], function ($, RunModules) {
                     numDivsLeft -= 1;
 
                     if (numDivsLeft === 0) {
-                        showSelectedExperiment();
+                        showSelectedExperiment(srcFolder);
                     }
                 });
             });
         }
+    }
 
-        return;
+    // Function to show the next set of content DIVs.
+    function showSelectedExperiment(srcFolder) {
+        $('.page').empty();
 
-        // Function to show the next set of content DIVs.
-        function showSelectedExperiment() {
-            $('.page').empty();
+        $('.page').html('loading ..');
 
-            RunModules(srcFolder);
-        }
+        RunModules(srcFolder);
     }
 
     function attachClickEvents() {
