@@ -81,9 +81,9 @@ define(['logme', 'jquery'], function (logme, $) {
         // logme($);
         // logme($.kjsdfhkfash);
         // logme(43.2);
-        // logme(null);
+        logme(null);
         // logme({'hello': 'world'});
-        logme(window);
+        // logme(window);
         // logme('"Hello, world!"', '\'Hello, world!\'');
         // logme($(document));
 
