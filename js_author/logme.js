@@ -124,7 +124,7 @@ define(['jquery', 'jquery_ui', 'jquery_block_ui'], function ($, jqueryUi, blockU
             } else {
                 messagesEl.append(
                     '<br />' +
-                    '<textarea rows="4">' + escapedText + '</textarea>' +
+                    '<textarea rows="4" readonly="readonly">' + escapedText + '</textarea>' +
                     '<br />'
                 );
             }
@@ -138,7 +138,11 @@ define(['jquery', 'jquery_ui', 'jquery_block_ui'], function ($, jqueryUi, blockU
             '</div>'
         );
 
-        closeButtonEl =  $('<div class="debugWindowCloseIcon"></div>');
+        closeButtonEl =  $(
+            '<div class="debugWindowCloseIcon">' +
+                '<img src="images/close_icon.png" />' +
+            '</div>'
+        );
 
         $.blockUI.defaults.css.cursor = 'default';
         $.blockUI({
@@ -172,7 +176,10 @@ define(['jquery', 'jquery_ui', 'jquery_block_ui'], function ($, jqueryUi, blockU
                     closeButtonEl
                 );
 
-                messagesEl.scrollTop(messagesEl[0].scrollHeight);
+                // Without first scrolling to the top, sometimes scrolling to
+                // the bottom is not fully done, as it stops on a <textarea>.
+                messagesEl.scrollTop(0);
+                messagesEl.scrollTop(messagesEl.prop('scrollHeight'));
 
                 closeButtonEl.click(function () {
                     $.unblockUI();
