@@ -75,7 +75,7 @@ define(['logme', 'jquery'], function (logme, $) {
                 c1 += 1;
             }
         }(0));
-        logme($);
+        /*logme($);
         logme($.kjsdfhkfash);
         logme(43.2);
         logme(null);
@@ -98,6 +98,6 @@ define(['logme', 'jquery'], function (logme, $) {
         logme(
             '1234567890123456789012345678901234567890123456789012345678' +
             '9012345678901234567890123456789012345678901234567890'
-        );
+        );*/
     }
 });
