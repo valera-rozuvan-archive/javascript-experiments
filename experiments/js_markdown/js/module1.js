@@ -2,7 +2,8 @@
  * module1.js - Part of "JS Markdown" JavaScript experiment.
  *
  *
- * Copyright 2012 Valera Rozuvan
+ * Copyright 2012-2013 Valera Rozuvan
+ * http://javascript-experiments.net/
  *
  *
  * This file is part of javascript-experiments.
@@ -25,19 +26,15 @@ define(
     ['ModuleDiv', 'showdown', 'text!../md/index.md'],
     function (ModuleDiv, Showdown, IndexSource) {
 
-    var moduleDiv, p, out;
-
-    moduleDiv = ModuleDiv(
-        'Rendering sample markdown content.',
-        'experiments/js_markdown/js/module1.js'
-    );
-
-    p = moduleDiv.p;
-    out = moduleDiv.out;
-
     return function () {
-        var converter;
+        var moduleDiv, p, outconverter;
 
+        moduleDiv = ModuleDiv(
+            'Rendering sample markdown content.',
+            'experiments/js_markdown/js/module1.js'
+        );
+        p = moduleDiv.p;
+        out = moduleDiv.out;
         moduleDiv.prepare();
 
         p('Experimenting with text.');

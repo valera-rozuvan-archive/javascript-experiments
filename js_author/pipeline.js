@@ -2,7 +2,8 @@
  * pipeline.js - Enabling communication between modules. No globals.
  *
  *
- * Copyright 2012 Valera Rozuvan
+ * Copyright 2012-2013 Valera Rozuvan
+ * http://javascript-experiments.net/
  *
  *
  * This file is part of javascript-experiments.

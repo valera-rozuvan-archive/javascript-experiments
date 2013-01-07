@@ -2,7 +2,8 @@
  * controller.js - Switch current experiment, process links to experiments.
  *
  *
- * Copyright 2012 Valera Rozuvan
+ * Copyright 2012-2013 Valera Rozuvan
+ * http://javascript-experiments.net/
  *
  *
  * This file is part of javascript-experiments.

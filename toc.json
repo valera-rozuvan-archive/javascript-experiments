@@ -4,7 +4,8 @@
     { "srcFolder": "js_markdown", "name": "JS Markdown" },
     { "srcFolder": "eval_dynamic_func", "name": "Dynamic functions with eval()" },
     { "srcFolder": "automatic_md_content", "name": "Automatic MD content" },
-    { "srcFolder": "lanczos_resampling", "name": "Lanczos resampling" }
+    { "srcFolder": "lanczos_resampling", "name": "Lanczos resampling" },
+    { "srcFolder": "logme_history", "name": "logme() history" }
 ],
 "all": {
     "2012": {
@@ -14,6 +15,11 @@
             "eval_dynamic_func",
             "automatic_md_content",
             "lanczos_resampling"
+        ]
+    },
+    "2013": {
+        "January": [
+            "logme_history"
         ]
     }
 }

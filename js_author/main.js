@@ -2,7 +2,8 @@
  * main.js - Require JS initialization and main point of entry for all JS.
  *
  *
- * Copyright 2012 Valera Rozuvan
+ * Copyright 2012-2013 Valera Rozuvan
+ * http://javascript-experiments.net/
  *
  *
  * This file is part of javascript-experiments.
@@ -28,6 +29,7 @@ requirejs.config({
     'paths': {
         'jquery': '../js_vendor/jquery-1.8.3.min',
         'jquery_ui': '../js_vendor/jquery-ui-1.9.2.custom.min',
+        'jquery_block_ui': '../js_vendor/jquery.blockUI',
         'text': '../js_vendor/text',
         'showdown': '../js_vendor/showdown.min',
         'MathJax': '../js_vendor/mathjax/MathJax.js?config=AM_HTMLorMML-full',
@@ -54,18 +56,18 @@ requirejs.config({
             'exports': 'MathJax'
         },
         'flot': {
-            'deps': [],
+            'deps': ['jquery'],
             'exports': 'jQuery.plot'
         },
         'jquery_ui': {
-            'deps': [],
+            'deps': ['jquery'],
             'exports': 'jQuery.ui'
         }
     }
 });
 
 // Main point of entrance into JavaScript code.
-requirejs(['jquery', 'RunModules'], function ($, RunModules) {
+requirejs(['jquery', 'RunModules', 'logme'], function ($, RunModules, logme) {
     // Just in case. This will tell jQuery to return the global $ variable it
     // created back to it's previous state. Even thought we will not use other
     // libraries which also define a $ variable, we will still perform this

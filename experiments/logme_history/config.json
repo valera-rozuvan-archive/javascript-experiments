@@ -1,0 +1,7 @@
+{
+    "name": "logme() history example",
+    "to_run": [
+        "md!description.md",
+        "module1"
+    ]
+}

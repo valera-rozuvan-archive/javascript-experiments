@@ -2,7 +2,8 @@
  * experiments_menu.js - An access point to experiments, and other stuff.
  *
  *
- * Copyright 2012 Valera Rozuvan
+ * Copyright 2012-2013 Valera Rozuvan
+ * http://javascript-experiments.net/
  *
  *
  * This file is part of javascript-experiments.
@@ -25,21 +26,14 @@ define(
     ['ModuleDiv', 'Controller', 'ContentManager'],
     function (ModuleDiv, Controller, ContentManager) {
 
-    var moduleDiv, out, featured;
+    return function () {
+        var moduleDiv, out, featured, c1, todaysDate, year;
 
-    moduleDiv = ModuleDiv(
-        'Featured JS experiments',
-        'experiments/experiments_menu/js/experiments_menu.js'
-    );
-    out = moduleDiv.out;
-
-    featured = ContentManager.featured;
-
-    return ExperimentsMenu;
-
-    function ExperimentsMenu() {
-        var c1, todaysDate, year;
-
+        moduleDiv = ModuleDiv(
+            'Featured JS experiments',
+            'experiments/experiments_menu/js/experiments_menu.js'
+        );
+        out = moduleDiv.out;
         moduleDiv.addCaption();
 
         out(
@@ -51,6 +45,7 @@ define(
             '</div>'
         );
 
+        featured = ContentManager.featured;
         out('<ul>');
         for (c1 = 0; c1 < featured.length; c1 += 1) {
             out(
@@ -69,7 +64,7 @@ define(
 
         out(
             '<div style="display: block; clear: both; text-align: right;">' +
-                '© ' +year + ' Valera Rozuvan' +
+                '© 2012 - ' +year + ' Valera Rozuvan' +
             '</div>'
         );
 

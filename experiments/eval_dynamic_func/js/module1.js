@@ -2,7 +2,8 @@
  * module1.js - Part of "Dynamic functions with eval()" JavaScript experiment.
  *
  *
- * Copyright 2012 Valera Rozuvan
+ * Copyright 2012-2013 Valera Rozuvan
+ * http://javascript-experiments.net/
  *
  *
  * This file is part of javascript-experiments.
@@ -22,19 +23,15 @@
  */
 
 define(['ModuleDiv'], function (ModuleDiv) {
-    var moduleDiv, p, preCode;
-
-    moduleDiv = ModuleDiv(
-        'Simple x + 7',
-        'experiments/eval_dynamic_func/js/module1.js'
-    );
-
-    p = moduleDiv.p;
-    preCode = moduleDiv.preCode;
-
     return function () {
-        var funcString, dynamicFunc;
+        var moduleDiv, p, preCode, funcString, dynamicFunc;
 
+        moduleDiv = ModuleDiv(
+            'Simple x + 7',
+            'experiments/eval_dynamic_func/js/module1.js'
+        );
+        p = moduleDiv.p;
+        preCode = moduleDiv.preCode;
         moduleDiv.prepare();
 
         p(
