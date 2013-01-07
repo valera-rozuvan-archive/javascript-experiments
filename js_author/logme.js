@@ -124,7 +124,7 @@ define(['jquery', 'jquery_ui', 'jquery_block_ui'], function ($, jqueryUi, blockU
             } else {
                 messagesEl.append(
                     '<br />' +
-                    '<textarea rows="4" readonly="readonly">' + escapedText + '</textarea>' +
+                    '<textarea rows="4" tabindex="-1" readonly="readonly">' + escapedText + '</textarea>' +
                     '<br />'
                 );
             }
@@ -176,10 +176,17 @@ define(['jquery', 'jquery_ui', 'jquery_block_ui'], function ($, jqueryUi, blockU
                     closeButtonEl
                 );
 
-                // Without first scrolling to the top, sometimes scrolling to
-                // the bottom is not fully done, as it stops on a <textarea>.
-                messagesEl.scrollTop(0);
-                messagesEl.scrollTop(messagesEl.prop('scrollHeight'));
+                // Sometimes scrolling to the bottom is not fully done, as it
+                // stops on a <textarea>. I have tried to determine the cause
+                // of this, and came to a conclusion that when there is a large
+                // number of messages in logme() history, then it takes time
+                // to render all of them, which causes 'scrollHeight' report
+                // incorrectly, or scrollTop() to not work as expected.
+                // Therefore, as a fix, I create a timeout, after which it will
+                // scroll to the bottom. So far this seems to work.
+                setTimeout(function () {
+                    messagesEl.scrollTop(messagesEl.prop('scrollHeight'));
+                }, 100);
 
                 closeButtonEl.click(function () {
                     $.unblockUI();
