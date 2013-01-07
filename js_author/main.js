@@ -27,6 +27,7 @@
 requirejs.config({
     'baseUrl': 'experiments',
     'paths': {
+        'hotfix': '../js_author/hotfix',
         'jquery': '../js_vendor/jquery-1.8.3.min',
         'jquery_ui': '../js_vendor/jquery-ui-1.9.2.custom.min',
         'jquery_block_ui': '../js_vendor/jquery.blockUI',
@@ -67,7 +68,13 @@ requirejs.config({
 });
 
 // Main point of entrance into JavaScript code.
-requirejs(['jquery', 'RunModules', 'logme'], function ($, RunModules, logme) {
+requirejs(
+    ['hotfix', 'jquery', 'RunModules', 'logme'],
+    function (hotFix, $, RunModules, logme) {
+
+    // Patch some old browsers for missing JS functionality.
+    hotFix();
+
     // Just in case. This will tell jQuery to return the global $ variable it
     // created back to it's previous state. Even thought we will not use other
     // libraries which also define a $ variable, we will still perform this
