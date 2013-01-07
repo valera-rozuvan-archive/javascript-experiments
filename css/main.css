@@ -32,12 +32,12 @@
 }
 
 .forkme_github {
-    position: fixed;
+    display: none;
+    position: absolute;
     width: 149px;
     height: 149px;
     top: 0;
-    right: 0;
-    border: 0;
+    left: 0;
     overflow: hidden;
 }
 

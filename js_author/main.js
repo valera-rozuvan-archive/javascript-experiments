@@ -42,6 +42,7 @@ requirejs.config({
         'Controller': '../js_author/controller',
         'ContentManager': '../js_author/content_manager',
         'pipeline': '../js_author/pipeline',
+        'showHideGitHubRibbon': '../js_author/show_hide_gh_ribbon',
 
         'ExtMd': '../js_author/ext/md',
 
@@ -69,11 +70,16 @@ requirejs.config({
 
 // Main point of entrance into JavaScript code.
 requirejs(
-    ['hotfix', 'jquery', 'RunModules', 'logme'],
-    function (hotFix, $, RunModules, logme) {
+    ['showHideGitHubRibbon', 'hotfix', 'jquery', 'RunModules', 'logme'],
+    function (showHideGitHubRibbon, hotFix, $, RunModules, logme) {
 
     // Patch some old browsers for missing JS functionality.
     hotFix();
+
+    // Depending on the width of the window, we will either show or hide the
+    // GitHub ribbon. If we don't do this, then when the window is very small,
+    // the ribbon will get in the way.
+    showHideGitHubRibbon();
 
     // Just in case. This will tell jQuery to return the global $ variable it
     // created back to it's previous state. Even thought we will not use other

@@ -23,11 +23,6 @@
  */
 
 define(['ContentManager', 'jquery'], function (ContentManager, $) {
-    var oldScrollLeft, oldWindowWidth;
-
-    oldScrollLeft = -1;
-    oldWindowWidth = -1;
-
     return function () {
         var out, featured, c1, todaysDate, year;
 
@@ -66,41 +61,5 @@ define(['ContentManager', 'jquery'], function (ContentManager, $) {
         );
 
         this.moduleDiv.publish('.toc');
-
-        // We will make sure that the GitHub ribbon always stays at the right
-        // side of the screen, even when the window is resized, or when it is
-        // scrolled horizontally (if the window width is less than minimal
-        // width set in CSS).
-        //
-        // Remember, that initially, CSS 'position' property of the GitHub
-        // ribbon is set to 'fixed'. This makes sure that if the user
-        // refreshes the page while the horizontal scroll is not at 0, then the
-        // ribbon is initially positioned at the right side of the window. We
-        // have to set CSS 'position' property to 'absolute' inorder to be able
-        // reposition the ribbon manually.
-        //
-        // On menu load, we will reposition the GitHub ribbon manually.
-        $('.forkme_github').css('position', 'absolute');
-        repositionRibbon();
-        $(window).on('scroll', repositionRibbon);
-        $(window).on('resize', repositionRibbon);
-    }
-
-    function repositionRibbon() {
-        var currentScrollLeft, currentWindowWidth;
-
-        currentScrollLeft = $(window).scrollLeft();
-        currentWindowWidth = $(window).width();
-
-        if (oldScrollLeft !== currentScrollLeft) {
-            oldScrollLeft = currentScrollLeft;
-        } else if (oldWindowWidth !== currentWindowWidth) {
-            oldWindowWidth = currentWindowWidth;
-        }
-
-        $('.forkme_github').css(
-            'left',
-            currentWindowWidth + currentScrollLeft - 149
-        );
     }
 });

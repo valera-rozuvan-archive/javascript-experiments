@@ -146,10 +146,6 @@ define(['jquery', 'logme'], function ($, logme) {
 
                 $('.page').empty();
 
-                // A hack to make sure that if a vertical scroll bar appears,
-                // the GitHub ribbon will be repositioned appropriately.
-                $('.forkme_github').css('position', 'fixed');
-
                 ModuleDiv = arguments[0];
                 ExtMd = arguments[1];
 
@@ -194,19 +190,6 @@ define(['jquery', 'logme'], function ($, logme) {
                     }
 
                 }
-
-                // A hack to make sure that if a vertical scroll bar appears,
-                // the GitHub ribbon will be repositioned appropriately.
-                setTimeout(function () {
-                    setTimeout(function () {
-                        $('.forkme_github').css(
-                            'left',
-                            $(window).scrollLeft() + $(window).width() - 149
-                        );
-
-                        $('.forkme_github').css('position', 'absolute');
-                    }, 500);
-                }, 50);
             }); // End-of: require(moduleNames, function () {
 
             return;
