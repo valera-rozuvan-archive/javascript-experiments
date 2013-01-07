@@ -108,11 +108,15 @@ a, span.simple_link, span.experiment_link {
 
     margin-top: -2px;
 
-    background-image: url('../images/close_icon.png');
-    background-repeat: no-repeat;
-    background-size: 24px;
-
     cursor: pointer;
+}
+
+.debugWindowCloseIcon img {
+    border: none;
+    outline: 0px;
+
+    width: 24px;
+    height: 24px;
 }
 
 .debugWindowMessages {
