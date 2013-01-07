@@ -214,7 +214,8 @@ define(['jquery', 'jquery_ui', 'jquery_block_ui'], function ($, jqueryUi, blockU
     //
     // ########################################################################
     function logme() {
-        var i, c1, seen, MAX_STRINGIFY_STACK, MAX_STRINGIFY_STACK_WARN_MSG;
+        var i, c1, seen, MAX_STRINGIFY_STACK, MAX_STRINGIFY_STACK_WARN_MSG,
+            objText;
 
         MAX_STRINGIFY_STACK = 1024;
         MAX_STRINGIFY_STACK_WARN_MSG = 'WARNING: Maximum object length (' +
@@ -243,28 +244,34 @@ define(['jquery', 'jquery_ui', 'jquery_block_ui'], function ($, jqueryUi, blockU
             } else if (typeof arguments[i] === 'undefined') {
                 _logmeArchive.push('undefined');
             } else {
-                _logmeArchive.push(
-                    JSON.stringify(
-                        arguments[i],
-                        function (key, val) {
-                            c1 += 1;
+                objText = JSON.stringify(
+                    arguments[i],
+                    function (key, val) {
+                        c1 += 1;
 
-                            if (c1 >= MAX_STRINGIFY_STACK) {
-                                return undefined;
-                            }
-
-                            if (typeof val === 'object') {
-                                if (seen.indexOf(val) >= 0) {
-                                    return '[recursion]';
-                                }
-
-                                seen.push(val);
-                            }
-
-                            return val;
+                        if (c1 >= MAX_STRINGIFY_STACK) {
+                            return undefined;
                         }
-                    )
+
+                        if (typeof val === 'object') {
+                            if (seen.indexOf(val) >= 0) {
+                                return '[recursion]';
+                            }
+
+                            seen.push(val);
+                        }
+
+                        return val;
+                    }
                 );
+
+                if (objText === undefined) {
+                    _logmeArchive.push('undefined');
+                } else if (objText === null) {
+                    _logmeArchive.push('null');
+                } else {
+                    _logmeArchive.push(objText);
+                }
             }
 
             if (c1 >= MAX_STRINGIFY_STACK) {
