@@ -23,6 +23,10 @@
  */
 
 define(['logme', 'jquery'], function (logme, $) {
+    var window_copy;
+
+    window_copy = window;
+
     return function () {
         var  p, el;
 
@@ -83,7 +87,7 @@ define(['logme', 'jquery'], function (logme, $) {
         // logme(43.2);
         logme(null);
         // logme({'hello': 'world'});
-        // logme(window);
+        logme(window_copy);
         // logme('"Hello, world!"', '\'Hello, world!\'');
         // logme($(document));
 
