@@ -22,7 +22,10 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-define(['jquery', 'logme'], function ($, logme) {
+define(
+    ['jquery', 'logme', 'ModuleDiv', 'ExtMd'],
+    function ($, logme, ModuleDiv, ExtMd) {
+
     return RunModules;
 
     function RunModules(moduleDir) {
@@ -77,12 +80,6 @@ define(['jquery', 'logme'], function ($, logme) {
 
             moduleNames = [];
             moduleConfig = [];
-
-            moduleNames.push('ModuleDiv');
-            moduleConfig.push(null);
-
-            moduleNames.push('ExtMd');
-            moduleConfig.push(null);
 
             for (c1 = 0; c1 < config.to_run.length; c1 += 1) {
 
@@ -142,17 +139,12 @@ define(['jquery', 'logme'], function ($, logme) {
             // experiment. The anonymous callback will execute once all of them
             // have been loaded.
             require(moduleNames, function () {
-                var i, moduleObj, ModuleDiv, ExtMd;
+                var i, moduleObj;
 
                 $('.page').empty();
 
-                ModuleDiv = arguments[0];
-                ExtMd = arguments[1];
-
-                // Call the module functions sequentially. Remember that
-                // arguments[0] is ModuleDiv() function, and arguments[1] is
-                // ExtMd() function.
-                for (i = 2; i < arguments.length; i++) {
+                // Call the module functions sequentially.
+                for (i = 0; i < arguments.length; i++) {
 
                     if ((moduleConfig[i] !== null) && (moduleConfig[i].easyMode === true)) {
                         moduleObj = {

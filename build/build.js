@@ -22,6 +22,6 @@
         'ExtMd': 'ext/md'
     },
     name: "main",
-    out: "../build/main_built.js",
+    out: "../build/main.min.js",
     preserveLicenseComments: false
 })

@@ -22,7 +22,7 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-define(['jquery', 'RunModules'], function ($, RunModules) {
+define(['jquery'], function ($) {
     return {
         'switchExperiment': switchExperiment,
         'attachClickEvents': attachClickEvents
@@ -66,7 +66,9 @@ define(['jquery', 'RunModules'], function ($, RunModules) {
 
         $('.page').html('loading ..');
 
-        RunModules(srcFolder);
+        require(['RunModules'], function (RunModules) {
+            RunModules(srcFolder);
+        });
     }
 
     function attachClickEvents() {
