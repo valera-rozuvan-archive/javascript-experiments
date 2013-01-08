@@ -1,6 +1,11 @@
 {
     "name": "Dynamic functions with eval()",
     "to_run": [
-        "module1"
+        {
+            "source": "module1",
+            "description": "Simple x + 7",
+            "githubLink": "experiments/eval_dynamic_func/js/module1.js",
+            "easyMode": "true"
+        }
     ]
 }

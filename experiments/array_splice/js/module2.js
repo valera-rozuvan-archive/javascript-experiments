@@ -45,13 +45,19 @@ define([], function () {
         p('myArray = ' + JSON.stringify(myArray) + '.');
         p('copyOfMyArray = ' + JSON.stringify(copyOfMyArray) + '.');
 
-        p('Now we will modify the second element. We will set "x" property of the object to 201');
+        p(
+            'Now we will modify the second element. We will set "x" ' +
+            'property of the object to 201'
+        );
         myArray[1].x = 201;
 
         p('myArray = ' + JSON.stringify(myArray) + '.');
         p('copyOfMyArray = ' + JSON.stringify(copyOfMyArray) + '.');
 
-        p('Now we will change the second element completely. Let us assign some string to it.');
+        p(
+            'Now we will change the second element completely. Let us ' +
+            'assign some string to it.'
+        );
         myArray[1] = 'Hello, world!';
 
         p('myArray = ' + JSON.stringify(myArray) + '.');

@@ -22,26 +22,18 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-define(
-    ['ModuleDiv', 'showdown', 'text!../md/index.md'],
-    function (ModuleDiv, Showdown, IndexSource) {
-
+define(['showdown', 'text!../md/index.md'], function (Showdown, indexSource) {
     return function () {
-        var moduleDiv, p, outconverter;
+        var p, out, converter;
 
-        moduleDiv = ModuleDiv(
-            'Rendering sample markdown content.',
-            'experiments/js_markdown/js/module1.js'
-        );
-        p = moduleDiv.p;
-        out = moduleDiv.out;
-        moduleDiv.prepare();
+        p = this.moduleDiv.p;
+        out = this.moduleDiv.out;
 
         p('Experimenting with text.');
 
         converter = new Showdown.converter();
-        out(converter.makeHtml(IndexSource));
+        out(converter.makeHtml(indexSource));
 
-        moduleDiv.publish();
+        this.moduleDiv.publish();
     };
 });

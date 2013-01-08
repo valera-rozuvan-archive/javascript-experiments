@@ -39,7 +39,10 @@ define([], function () {
         p('myArray = ' + JSON.stringify(myArray) + '.');
         p('copyOfMyArray = ' + JSON.stringify(copyOfMyArray) + '.');
 
-        p('Now we will modify the second object. We will set "x" property of the object to 201');
+        p(
+            'Now we will modify the second object. We will set "x" property ' +
+            'of the object to 201'
+        );
         obj2.x = 201;
 
         p('myArray = ' + JSON.stringify(myArray) + '.');

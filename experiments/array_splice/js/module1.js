@@ -45,7 +45,10 @@ define([], function () {
         p('myObj.property1.x = ' + myObj.property1.x + '.');
         p('copyOfMyObj.property1.x = ' + copyOfMyObj.property1.x + '.');
 
-        p('Now we will change myObj completely. Let us assign {} to it (i.e. a new object).');
+        p(
+            'Now we will change myObj completely. Let us assign {} to it ' +
+            '(i.e. a new object).'
+        );
 
         myObj = {};
         p('typeof myObj.property1 = ' + (typeof myObj.property1) + '.');

@@ -22,30 +22,35 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-define(['ModuleDiv'], function (ModuleDiv) {
+define([], function () {
     return function () {
-        var moduleDiv, p, preCode, funcString, dynamicFunc;
+        var p, preCode, funcString, dynamicFunc;
 
-        moduleDiv = ModuleDiv(
-            'Simple x + 7',
-            'experiments/eval_dynamic_func/js/module1.js'
-        );
-        p = moduleDiv.p;
-        preCode = moduleDiv.preCode;
-        moduleDiv.prepare();
+        p = this.moduleDiv.p;
+        preCode = this.moduleDiv.preCode;
 
         p(
-            'The title of this experiment "Dynamic functions with eval()" is misleading. ' +
-            'We will not use the eval() function. ' +
-            'Even though initially it was used, it was discovered that you must jump through an extra hoop for IE8 if you want it to work there. ' +
-            'The Function() constructor is a better choise for this because it works in all modern browsers AND IE8.'
+            'The title of this experiment "Dynamic functions with eval()" ' +
+            'is misleading. We will not use the eval() function. Even ' +
+            'though initially it was used, it was discovered that you must ' +
+            'jump through an extra hoop for IE8 if you want it to work ' +
+            'there. The Function() constructor is a better choise for this ' +
+            'because it works in all modern browsers AND IE8.'
         );
 
-        funcString = 'return x + getSeven(); function getSeven() { return 7; }';
+        funcString =
+            'return x + getSeven(); function getSeven() { return 7; }';
 
-        p('We will define a dynamic function by passing \'x\' and the string:');
+        p(
+            'We will define a dynamic function by passing \'x\' and the ' +
+            'string:'
+        );
         preCode('funcString = \'' + funcString + '\';');
-        p('to the Function constructor. The result we will assign to a variable, and call the dynamic function via that variable, passing 2 as the argument.');
+        p(
+            'to the Function constructor. The result we will assign to a ' +
+            'variable, and call the dynamic function via that variable, ' +
+            'passing 2 as the argument.'
+        );
 
         dynamicFunc = new Function('x', funcString);
 
@@ -56,6 +61,6 @@ define(['ModuleDiv'], function (ModuleDiv) {
             'dynamicFunc(x); // The result is ' + dynamicFunc(2) + '.'
         );
 
-        moduleDiv.publish();
+        this.moduleDiv.publish();
     };
 });

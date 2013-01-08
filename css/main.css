@@ -31,6 +31,12 @@
     font-family: "Avant Garde", "Century Gothic", sans-serif;
 }
 
+.toc_info {
+    text-align: right;
+    display: block;
+    clear: both;
+}
+
 .forkme_github {
     display: none;
     position: absolute;

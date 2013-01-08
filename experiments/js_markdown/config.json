@@ -1,6 +1,11 @@
 {
     "name": "JS Markdown",
     "to_run": [
-        "module1"
+        {
+            "source": "module1",
+            "description": "Rendering sample markdown content.",
+            "githubLink": "experiments/js_markdown/js/module1.js",
+            "easyMode": "true"
+        }
     ]
 }

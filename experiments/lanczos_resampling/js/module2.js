@@ -23,98 +23,25 @@
  */
 
 define(
-    ['pipeline', 'MathJax', 'jquery', 'jquery_ui', 'flot'],
-    function (pipeline, MathJax, $, jui, flot) {
+    [
+        'pipeline', 'MathJax', 'jquery', 'jquery_ui', 'flot', 'showdown',
+        'text!../md/module2_text.md'
+    ],
+    function (pipeline, MathJax, $, jui, flot, Showdown, module2Text) {
+
+    MathJax.Hub.Config({
+        asciimath2jax: {
+            delimiters: [['\\$','\\$']]
+        }
+    });
 
     return function () {
-        var p, out;
+        var out, converter;
 
-        p = this.moduleDiv.p;
         out = this.moduleDiv.out;
+        converter = new Showdown.converter();
 
-        p(
-            'The Lanczos filter impulse response is the normalized sinc ' +
-            'function, `text{sinc}(x)`, windowed by the Lanczos window. The ' +
-            'Lanczos window is the central lobe of a horizontally-stretched ' +
-            'sinc, `text{sinc}(x / a)` for `−a <= x <= a`. Due to its form, ' +
-            'the Lanczos window is also called the sinc window.'
-        );
-
-        out(
-            '<div ' +
-                'id="placeholder1" ' +
-                'style=" ' +
-                    'width: 400px; ' +
-                    'height: 400px; ' +
-                    'margin-left: auto; ' +
-                    'margin-right: auto; ' +
-                '" ' +
-            '></div>'
-        );
-
-        p(
-            '<span style="text-decoration: underline;">Figure 1.</span> The ' +
-            'sinc function and the Lanczos filter are overlayed on a single ' +
-            'graph. For calrity, the window cut-off is indicated by ' +
-            'vertical lines. In this example the `a` parameter lies in the ' +
-            'range `[0, 5]`. Use the slider below to change `a`.'
-        );
-
-        out(
-            '<div ' +
-                'style=" ' +
-                    'width: 510px; ' +
-                    'height: 20px; ' +
-                    'margin-left: auto; ' +
-                    'margin-right: auto; ' +
-                    'margin-bottom: 15px; ' +
-                    'margin-top: 30px; ' +
-                    'position: relative; ' +
-                '" ' +
-            '>' +
-
-                '<div ' +
-                    'id="a_slider_value" ' +
-                    'style=" ' +
-                        'width: 90px; ' +
-                        'position: absolute; ' +
-                        'top: -27px; ' +
-                        'left: 100px; ' +
-                    '" ' +
-                '></div> ' +
-
-                '<div ' +
-                    'style=" ' +
-                        'width: 90px; ' +
-                        'display: inline; ' +
-                        'float: left; ' +
-                    '" ' +
-                '> ' +
-                    '`a_text{min} = 0` ' +
-                '</div> ' +
-
-                '<div ' +
-                    'id="a_slider" ' +
-                    'style=" ' +
-                        'width: 300px; ' +
-                        'display: inline; ' +
-                        'float: left; ' +
-                    '" ' +
-                '></div>' +
-
-                '<div ' +
-                    'style=" ' +
-                        'margin-left: 20px; ' +
-                        'width: 90px; ' +
-                        'display: inline; ' +
-                        'float: left; ' +
-                    '" ' +
-                '> ' +
-                    '`a_text{max} = 5` ' +
-                '</div> ' +
-
-            '</div>'
-        );
+        out(converter.makeHtml(module2Text));
 
         this.moduleDiv.publish();
 
@@ -129,7 +56,10 @@ define(
             'step': 0.1,
             'slide': function(event, ui) {
                 pipeline.a = ui.value;
-                $('#a_slider_value').css('left', (pipeline.a * 60 + 80) + 'px');
+                $('#a_slider_value').css(
+                    'left',
+                    (pipeline.a * 60 + 80) + 'px'
+                );
                 $('#a_slider_value').html(pipeline.a.toFixed(1));
                 plot();
             }
@@ -231,6 +161,6 @@ define(
                     'max': 1.2
                 }
             }
-        );
+        ); // End-of: flot(
     } // End-of: function plot()
 });

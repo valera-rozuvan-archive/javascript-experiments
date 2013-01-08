@@ -22,18 +22,16 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-define(['ContentManager', 'jquery'], function (ContentManager, $) {
+define(['ContentManager'], function (ContentManager) {
     return function () {
-        var out, featured, c1, todaysDate, year;
+        var out, featured, c1, todaysDate, year, url;
 
         out = this.moduleDiv.out;
 
+        url = 'https://github.com/valera-rozuvan/javascript-experiments';
         out(
-            '<div style="text-align: right;">' +
-                '<a href="https://github.com/valera-rozuvan/javascript-experiments">' +
-                    'source' +
-                '</a> ' +
-                '|| click octocat' +
+            '<div class="toc_info">' +
+                '<a href="' + url + '">source</a> || click octocat' +
             '</div>'
         );
 
@@ -55,8 +53,8 @@ define(['ContentManager', 'jquery'], function (ContentManager, $) {
         year = todaysDate.getFullYear();
 
         out(
-            '<div style="display: block; clear: both; text-align: right;">' +
-                '© 2012 - ' +year + ' Valera Rozuvan' +
+            '<div class="toc_info">' +
+                '&copy; 2012 - ' +year + ' Valera Rozuvan' +
             '</div>'
         );
 

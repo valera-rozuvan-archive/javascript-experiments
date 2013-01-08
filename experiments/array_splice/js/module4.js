@@ -39,7 +39,10 @@ define([], function () {
         p('myArray = ' + JSON.stringify(myArray) + '.');
         p('copyOfMyArray = ' + JSON.stringify(copyOfMyArray) + '.');
 
-        p('What if we use the delete operator on the \'x\' property of the second object?');
+        p(
+            'What if we use the delete operator on the \'x\' property of ' +
+            'the second object?'
+        );
         delete obj2.x;
 
         p('myArray = ' + JSON.stringify(myArray) + '.');
