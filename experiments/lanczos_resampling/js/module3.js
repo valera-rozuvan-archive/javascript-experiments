@@ -30,10 +30,17 @@ define(
     function (pipeline, MathJax, $, jui, flot, Showdown, module3Text) {
 
     MathJax.Hub.Config({
-        asciimath2jax: {
-            delimiters: [['\\$','\\$']]
+        'tex2jax': {
+            inlineMath: [ ['\\(','\\)'] ],
+            processEnvironments: false
+        },
+        'asciimath2jax': {
+            'delimiters': [
+                ['\\$','\\$']
+            ]
         }
     });
+    MathJax.Hub.Configured();
 
     return function () {
         var out, converter;

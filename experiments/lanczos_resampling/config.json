@@ -18,6 +18,12 @@
             "description": "Theory: part 2",
             "githubLink": "experiments/lanczos_resampling/js/module3.js",
             "easyMode": "true"
+        },
+        {
+            "source": "md!module4.md",
+            "description": "Lanczos filter: simple example",
+            "githubLink": "experiments/lanczos_resampling/md/module4.md",
+            "easyMode": "true"
         }
     ]
 }

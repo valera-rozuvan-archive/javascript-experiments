@@ -32,7 +32,7 @@ requirejs.config({
         'jquery_block_ui': '../js_vendor/jquery.blockUI.min',
         'text': '../js_vendor/text.min',
         'showdown': '../js_vendor/showdown.min',
-        'MathJax': '../js_vendor/mathjax/MathJax.js?config=AM_HTMLorMML-full',
+        'MathJax': '../js_vendor/mathjax/MathJax.js?config=TeX-MML-AM_HTMLorMML&delayStartupUntil=configured',
         'flot': '../js_vendor/flot/jquery.flot',
 
         'logme': '../js_author/logme',
