@@ -24,23 +24,10 @@
 
 define(
     [
-        'pipeline', 'MathJax', 'jquery', 'jquery_ui', 'flot', 'showdown',
+        'pipeline', 'MathJaxLoader', 'jquery', 'jquery_ui', 'flot', 'showdown',
         'text!../md/module3_text.md'
     ],
-    function (pipeline, MathJax, $, jui, flot, Showdown, module3Text) {
-
-    MathJax.Hub.Config({
-        'tex2jax': {
-            inlineMath: [ ['\\(','\\)'] ],
-            processEnvironments: false
-        },
-        'asciimath2jax': {
-            'delimiters': [
-                ['\\$','\\$']
-            ]
-        }
-    });
-    MathJax.Hub.Configured();
+    function (pipeline, MathJaxLoader, $, jui, flot, Showdown, module3Text) {
 
     return function () {
         var out, converter;
@@ -72,7 +59,7 @@ define(
         });
         plot();
 
-        MathJax.Hub.Typeset();
+        MathJaxLoader.typeset(this.el);
     };
 
     function plot() {

@@ -44,6 +44,7 @@ requirejs.config({
         'ContentManager': '../js_author/content_manager',
         'pipeline': '../js_author/pipeline',
         'showHideGitHubRibbon': '../js_author/show_hide_gh_ribbon',
+        'MathJaxLoader': '../js_author/mathjax_loader',
 
         'ExtMd': '../js_author/ext/md',
     },

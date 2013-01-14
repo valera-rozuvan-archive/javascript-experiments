@@ -4,8 +4,7 @@
         {
             "source": "module1",
             "description": "Rendering sample markdown content.",
-            "githubLink": "experiments/js_markdown/js/module1.js",
-            "easyMode": "true"
+            "githubLink": "experiments/js_markdown/js/module1.js"
         }
     ]
 }

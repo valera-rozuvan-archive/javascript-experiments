@@ -4,8 +4,7 @@
         {
             "source": "module1",
             "description": "Simple x + 7",
-            "githubLink": "experiments/eval_dynamic_func/js/module1.js",
-            "easyMode": "true"
+            "githubLink": "experiments/eval_dynamic_func/js/module1.js"
         }
     ]
 }

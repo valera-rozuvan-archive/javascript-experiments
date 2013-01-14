@@ -23,8 +23,8 @@
  */
 
 define(
-    ['jquery', 'logme', 'ModuleDiv', 'ExtMd'],
-    function ($, logme, ModuleDiv, ExtMd) {
+    ['jquery', 'logme', 'ModuleDiv', 'ExtMd', 'MathJaxLoader'],
+    function ($, logme, ModuleDiv, ExtMd, MathJaxLoader) {
 
     return RunModules;
 
@@ -67,6 +67,7 @@ define(
             // We expect an array of module paths (without the trailing '.js').
             // If we don't get an array, or it is empty, do not continue
             if (
+                (config.hasOwnProperty('to_run') === false) ||
                 ($.isArray(config.to_run) === false) ||
                 (config.to_run.length === 0)
             ) {
@@ -83,18 +84,17 @@ define(
 
             for (c1 = 0; c1 < config.to_run.length; c1 += 1) {
 
-                // First check that it is really a string, and then construct a
-                // path to the module. All modules JS files are to be placed
-                // under the 'js/' directory in the experiment folder.
-                if (typeof config.to_run[c1] === 'string') {
-                    parseModuleSourceStr(config.to_run[c1]);
-                    moduleConfig.push(null);
-                }
+                // If this is an object, then we get configuration options from it.
+                if ($.isPlainObject(config.to_run[c1]) === true) {
 
-                // If this is an object, then we can also get configuration
-                // options from it.
-                else if ($.isPlainObject(config.to_run[c1]) === true) {
-                    if (typeof config.to_run[c1].source !== 'string') {
+                    // First check that we have a 'source' string. It is a path to the module. All modules JS files
+                    // are to be placed under the 'js/' directory in the experiment folder, all MD modules are
+                    // to be placed under the 'md/' directory. It is expected that directory prefixes are not present
+                    // in the 'source' string - they are automatically added.
+                    if (
+                        (config.to_run[c1].hasOwnProperty('source') === false) ||
+                        (typeof config.to_run[c1].source !== 'string')
+                    ) {
                         logme('ERROR: Missing "source" property!');
 
                         return;
@@ -102,24 +102,32 @@ define(
                     parseModuleSourceStr(config.to_run[c1].source);
 
                     moduleConfigObj = {
-                        'easyMode': false,
                         'description': '',
-                        'githubLink': ''
+                        'githubLink': '',
+                        'useMathJax': false
                     };
 
                     if (
-                        (typeof config.to_run[c1].easyMode === 'string') &&
-                            (config.to_run[c1].easyMode.toLowerCase() === 'true')
+                        (config.to_run[c1].hasOwnProperty('description') === true) &&
+                        (typeof config.to_run[c1].description === 'string')
                     ) {
-                        moduleConfigObj.easyMode = true;
-                    }
-
-                    if (typeof config.to_run[c1].description === 'string') {
                         moduleConfigObj.description = config.to_run[c1].description;
                     }
 
-                    if (typeof config.to_run[c1].githubLink === 'string') {
+                    if (
+                        (config.to_run[c1].hasOwnProperty('githubLink') === true) &&
+                        (typeof config.to_run[c1].githubLink === 'string')
+                    ) {
                         moduleConfigObj.githubLink = config.to_run[c1].githubLink;
+                    }
+
+                    if (
+                        (config.to_run[c1].hasOwnProperty('useMathJax') === true) &&
+                        (typeof config.to_run[c1].useMathJax === 'string')
+                    ) {
+                        if (config.to_run[c1].useMathJax.toLowerCase() === 'true') {
+                            moduleConfigObj.useMathJax = true;
+                        }
                     }
 
                     moduleConfig.push(moduleConfigObj);
@@ -128,7 +136,10 @@ define(
                 }
             }
 
-            if (typeof config.name === 'string') {
+            if (
+                (config.hasOwnProperty('name') === true) &&
+                (typeof config.name === 'string')
+            ) {
                 $(document).attr(
                     'title',
                     'JavaScript Experiments: ' + config.name
@@ -145,8 +156,7 @@ define(
 
                 // Call the module functions sequentially.
                 for (i = 0; i < arguments.length; i++) {
-
-                    if ((moduleConfig[i] !== null) && (moduleConfig[i].easyMode === true)) {
+                    if (moduleConfig[i] !== null) {
                         moduleObj = {
                             'moduleDiv': ModuleDiv(
                                 moduleConfig[i].description,
@@ -159,7 +169,7 @@ define(
                         // the RequireJS 'text' plugin. We will pass it to the
                         // extension function ExtMd().
                         if (typeof arguments[i] === 'string') {
-                            ExtMd.call(moduleObj, arguments[i]);
+                            ExtMd.call(moduleObj, arguments[i], moduleConfig[i].useMathJax);
                         }
 
                         // In all other cases, the argument is a module function.
@@ -170,17 +180,6 @@ define(
 
                         moduleObj = null;
                     }
-
-                    // The same as the first case, only we simply call the
-                    // functions, without settings a specific
-                    else {
-                        if (typeof arguments[i] === 'string') {
-                            ExtMd(arguments[i]);
-                        } else {
-                            arguments[i]();
-                        }
-                    }
-
                 }
             }); // End-of: require(moduleNames, function () {
 

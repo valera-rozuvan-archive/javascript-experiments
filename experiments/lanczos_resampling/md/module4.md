@@ -34,7 +34,7 @@ closer the pixel is to the central pixel, the closer its weight will be to
 \\( L(C(\vec{r}_0)) = L(0) = 1 \\).
 
 Now we can calculate new values of R, G, and B layers for each pixel, where a
-pixel is represented by a vector \$ vec r \$
+pixel is represented by a vector \\( \vec{r} \\)
 
 
 \$ {

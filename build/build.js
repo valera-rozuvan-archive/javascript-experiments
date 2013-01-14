@@ -18,6 +18,7 @@
         'ContentManager': 'content_manager',
         'pipeline': 'pipeline',
         'showHideGitHubRibbon': 'show_hide_gh_ribbon',
+        'MathJaxLoader': 'mathjax_loader',
 
         'ExtMd': 'ext/md'
     },

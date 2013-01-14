@@ -3,8 +3,7 @@
         {
             "source": "experiments_menu",
             "description": "Featured JS experiments",
-            "githubLink": "experiments/experiments_menu/js/experiments_menu.js",
-            "easyMode": "true"
+            "githubLink": "experiments/experiments_menu/js/experiments_menu.js"
         }
     ]
 }

@@ -1,5 +1,5 @@
 /*
- * md.js - Create a module DIV from a MarkDown file without a JS definition.
+ * mathjax_loader.js - Load MathJax and initialize it. Wrapper for MathJax utilities.
  *
  *
  * Copyright 2012-2013 Valera Rozuvan
@@ -22,19 +22,27 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-define(['showdown', 'MathJaxLoader'], function (Showdown, MathJaxLoader) {
-    return ExtMd;
-
-    function ExtMd(mdText, useMathJax) {
-        var converter;
-
-        converter = new Showdown.converter();
-        this.moduleDiv.out(converter.makeHtml(mdText));
-
-        this.moduleDiv.publish();
-
-        if (useMathJax === true) {
-            MathJaxLoader.typeset(this.el);
+define(['MathJax'], function (MathJax) {
+    MathJax.Hub.Config({
+        'tex2jax': {
+            inlineMath: [ ['\\(','\\)'] ],
+            processEnvironments: false
+        },
+        'asciimath2jax': {
+            'delimiters': [
+                ['\\$', '\\$']
+            ]
         }
+    });
+    MathJax.Hub.Configured();
+
+    return {
+        'typeset': typeset
+    };
+
+    function typeset(el) {
+        // MathJax.Hub.Typeset();
+        // setTimeout(function () { MathJax.Hub.Queue(['Typeset', MathJax.Hub], el); }, 50);
+        MathJax.Hub.Queue(['Typeset', MathJax.Hub], el);
     }
 });
