@@ -22,7 +22,7 @@
  * along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-define(['ContentManager'], function (ContentManager) {
+define(['ContentManager', 'Controller'], function (ContentManager, Controller) {
     return function () {
         var out, featured, c1, todaysDate, year, url;
 
@@ -59,5 +59,9 @@ define(['ContentManager'], function (ContentManager) {
         );
 
         this.moduleDiv.publish('.toc');
+
+        if (window.location.hash.length > 0) {
+            Controller.switchExperiment(window.location.hash.replace(/^#/, ''));
+        }
     }
 });

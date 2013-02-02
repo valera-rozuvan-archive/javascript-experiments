@@ -64,6 +64,8 @@ define(['jquery'], function ($) {
     function showSelectedExperiment(srcFolder) {
         $('.page').empty();
 
+        window.location.hash = srcFolder;
+
         $('.page').html('loading ..');
 
         require(['RunModules'], function (RunModules) {

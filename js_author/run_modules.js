@@ -45,6 +45,8 @@ define(
                     'not get a string.'
                 );
 
+                $('.page').empty();
+
                 return;
             }
 
@@ -60,6 +62,8 @@ define(
                     'JSON.parse() returned with error message: "' +
                     err.message + '".'
                 );
+
+                $('.page').empty();
 
                 return;
             }
