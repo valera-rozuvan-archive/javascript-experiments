@@ -2,7 +2,7 @@
  * show_hide_gh_ribbon.js - Show or hide GitHub ribbon based on window width.
  *
  *
- * Copyright 2012-2013 Valera Rozuvan
+ * Copyright 2012-2017 Valera Rozuvan
  * http://javascript-experiments.net/
  *
  *

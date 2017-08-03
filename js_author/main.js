@@ -2,7 +2,7 @@
  * main.js - Require JS initialization and main point of entry for all JS.
  *
  *
- * Copyright 2012-2013 Valera Rozuvan
+ * Copyright 2012-2017 Valera Rozuvan
  * http://javascript-experiments.net/
  *
  *

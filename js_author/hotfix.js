@@ -2,7 +2,7 @@
  * hotfix.js - Patch some old browsers for missing JS functionality.
  *
  *
- * Copyright 2012-2013 Valera Rozuvan
+ * Copyright 2012-2017 Valera Rozuvan
  * http://javascript-experiments.net/
  *
  *

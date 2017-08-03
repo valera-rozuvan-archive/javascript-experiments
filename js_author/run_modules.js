@@ -2,7 +2,7 @@
  * run_modules.js - Runs all modules contained in an experiment.
  *
  *
- * Copyright 2012-2013 Valera Rozuvan
+ * Copyright 2012-2017 Valera Rozuvan
  * http://javascript-experiments.net/
  *
  *

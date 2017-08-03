@@ -2,7 +2,7 @@
  * output.js - Routines for output of content (text, HTML) to a DIV element.
  *
  *
- * Copyright 2012-2013 Valera Rozuvan
+ * Copyright 2012-2017 Valera Rozuvan
  * http://javascript-experiments.net/
  *
  *

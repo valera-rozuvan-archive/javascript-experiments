@@ -2,7 +2,7 @@
  * mathjax_loader.js - Load MathJax and initialize it. Wrapper for MathJax utilities.
  *
  *
- * Copyright 2012-2013 Valera Rozuvan
+ * Copyright 2012-2017 Valera Rozuvan
  * http://javascript-experiments.net/
  *
  *

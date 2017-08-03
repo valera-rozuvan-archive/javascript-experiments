@@ -2,7 +2,7 @@
  * logme.js - Utility to output information to the JS console.
  *
  *
- * Copyright 2012-2013 Valera Rozuvan
+ * Copyright 2012-2017 Valera Rozuvan
  * http://javascript-experiments.net/
  *
  *
